@@ -1,8 +1,4 @@
-export default function AssignmentEditor({
-  params,
-}: {
-  params: { aid: number };
-}) {
+export default function AssignmentEditor() {
   return (
     <div id="wd-assignments-editor">
       <form>
