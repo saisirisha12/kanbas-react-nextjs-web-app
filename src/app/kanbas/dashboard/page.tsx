@@ -8,110 +8,175 @@ export default function Dashboard() {
       <hr />
       <h2 id="wd-dashboard-published">Published Courses (7)</h2>
       <hr />
-      <div id="wd-dashboard-courses">
-        <div className="wd-dashboard-course">
-          <Image src="/images/reactjs.jpg" height={200} width={200} alt="React.js" />
-          <div>
-            <Link
-              className="wd-dashboard-course-link"
-              href="/kanbas/courses/1234/home"
-            >
-              CS1234 React JS
-            </Link>
-            <p className="wd-dashboard-course-title">
-              Full Stack software developer
-            </p>
-            <Link href="/kanbas/courses/1234/home">Go</Link>
+      <div id="wd-dashboard-courses" className="row">
+        <div className="row row-cols-1 row-cols-md-5 g-4">
+          <div className="wd-dashboard-course col" style={{ width: "300px" }}>
+            <div className="card rounded-3 overflow-hidden">
+              <Link
+                className="wd-dashboard-course-link text-decoration-none text-dark"
+                href="/kanbas/courses/1234/home"
+              >
+                <Image
+                  src="/images/reactjs.jpg"
+                  height={160}
+                  width={300}
+                  alt="React.js"
+                />
+                <div className="card-body">
+                  <h5 className="wd-dashboard-course-title card-title">
+                    CS1234 React JS
+                  </h5>
+                  <p className="wd-dashboard-course-title card-text">
+                    Full Stack software developer
+                  </p>
+                  <button className="btn btn-primary">Go</button>
+                </div>
+              </Link>
+            </div>
           </div>
-        </div>
-        <div className="wd-dashboard-course">
-          <Image src="/images/reactjs.jpg" height={200} width={200} alt="React.js" />
-          <div>
-            <Link
-              className="wd-dashboard-course-link"
-              href="/kanbas/courses/1234/home"
-            >
-              CS1234 React JS
-            </Link>
-            <p className="wd-dashboard-course-title">
-              Full Stack software developer
-            </p>
-            <Link href="/kanbas/courses/1234/home">Go</Link>
+          <div className="wd-dashboard-course col" style={{ width: "300px" }}>
+            <div className="card rounded-3 overflow-hidden">
+              <Link
+                className="wd-dashboard-course-link text-decoration-none text-dark"
+                href="/kanbas/courses/1234/home"
+              >
+                <Image
+                  src="/images/reactjs.jpg"
+                  height={160}
+                  width={300}
+                  alt="React.js"
+                />
+                <div className="card-body">
+                  <h5 className="wd-dashboard-course-title card-title">
+                    CS1234 React JS
+                  </h5>
+                  <p className="wd-dashboard-course-title card-text">
+                    Full Stack software developer
+                  </p>
+                  <button className="btn btn-primary">Go</button>
+                </div>
+              </Link>
+            </div>
           </div>
-        </div>
-        <div className="wd-dashboard-course">
-          <Image src="/images/reactjs.jpg" height={200} width={200} alt="React.js" />
-          <div>
-            <Link
-              className="wd-dashboard-course-link"
-              href="/kanbas/courses/1234/home"
-            >
-              CS1234 React JS
-            </Link>
-            <p className="wd-dashboard-course-title">
-              Full Stack software developer
-            </p>
-            <Link href="/kanbas/courses/1234/home">Go</Link>
+          <div className="wd-dashboard-course col" style={{ width: "300px" }}>
+            <div className="card rounded-3 overflow-hidden">
+              <Link
+                className="wd-dashboard-course-link text-decoration-none text-dark"
+                href="/kanbas/courses/1234/home"
+              >
+                <Image
+                  src="/images/reactjs.jpg"
+                  height={160}
+                  width={300}
+                  alt="React.js"
+                />
+                <div className="card-body">
+                  <h5 className="wd-dashboard-course-title card-title">
+                    CS1234 React JS
+                  </h5>
+                  <p className="wd-dashboard-course-title card-text">
+                    Full Stack software developer
+                  </p>
+                  <button className="btn btn-primary">Go</button>
+                </div>
+              </Link>
+            </div>
           </div>
-        </div>
-        <div className="wd-dashboard-course">
-          <Image src="/images/reactjs.jpg" height={200} width={200} alt="React.js" />
-          <div>
-            <Link
-              className="wd-dashboard-course-link"
-              href="/kanbas/courses/1234/home"
-            >
-              CS1234 React JS
-            </Link>
-            <p className="wd-dashboard-course-title">
-              Full Stack software developer
-            </p>
-            <Link href="/kanbas/courses/1234/home">Go</Link>
+          <div className="wd-dashboard-course col" style={{ width: "300px" }}>
+            <div className="card rounded-3 overflow-hidden">
+              <Link
+                className="wd-dashboard-course-link text-decoration-none text-dark"
+                href="/kanbas/courses/1234/home"
+              >
+                <Image
+                  src="/images/reactjs.jpg"
+                  height={160}
+                  width={300}
+                  alt="React.js"
+                />
+                <div className="card-body">
+                  <h5 className="wd-dashboard-course-title card-title">
+                    CS1234 React JS
+                  </h5>
+                  <p className="wd-dashboard-course-title card-text">
+                    Full Stack software developer
+                  </p>
+                  <button className="btn btn-primary">Go</button>
+                </div>
+              </Link>
+            </div>
           </div>
-        </div>
-        <div className="wd-dashboard-course">
-          <Image src="/images/reactjs.jpg" height={200} width={200} alt="React.js" />
-          <div>
-            <Link
-              className="wd-dashboard-course-link"
-              href="/kanbas/courses/1234/home"
-            >
-              CS1234 React JS
-            </Link>
-            <p className="wd-dashboard-course-title">
-              Full Stack software developer
-            </p>
-            <Link href="/kanbas/courses/1234/home">Go</Link>
+          <div className="wd-dashboard-course col" style={{ width: "300px" }}>
+            <div className="card rounded-3 overflow-hidden">
+              <Link
+                className="wd-dashboard-course-link text-decoration-none text-dark"
+                href="/kanbas/courses/1234/home"
+              >
+                <Image
+                  src="/images/reactjs.jpg"
+                  height={160}
+                  width={300}
+                  alt="React.js"
+                />
+                <div className="card-body">
+                  <h5 className="wd-dashboard-course-title card-title">
+                    CS1234 React JS
+                  </h5>
+                  <p className="wd-dashboard-course-title card-text">
+                    Full Stack software developer
+                  </p>
+                  <button className="btn btn-primary">Go</button>
+                </div>
+              </Link>
+            </div>
           </div>
-        </div>
-        <div className="wd-dashboard-course">
-          <Image src="/images/reactjs.jpg" height={200} width={200} alt="React.js" />
-          <div>
-            <Link
-              className="wd-dashboard-course-link"
-              href="/kanbas/courses/1234/home"
-            >
-              CS1234 React JS
-            </Link>
-            <p className="wd-dashboard-course-title">
-              Full Stack software developer
-            </p>
-            <Link href="/kanbas/courses/1234/home">Go</Link>
+          <div className="wd-dashboard-course col" style={{ width: "300px" }}>
+            <div className="card rounded-3 overflow-hidden">
+              <Link
+                className="wd-dashboard-course-link text-decoration-none text-dark"
+                href="/kanbas/courses/1234/home"
+              >
+                <Image
+                  src="/images/reactjs.jpg"
+                  height={160}
+                  width={300}
+                  alt="React.js"
+                />
+                <div className="card-body">
+                  <h5 className="wd-dashboard-course-title card-title">
+                    CS1234 React JS
+                  </h5>
+                  <p className="wd-dashboard-course-title card-text">
+                    Full Stack software developer
+                  </p>
+                  <button className="btn btn-primary">Go</button>
+                </div>
+              </Link>
+            </div>
           </div>
-        </div>
-        <div className="wd-dashboard-course">
-          <Image src="/images/reactjs.jpg" height={200} width={200} alt="React.js" />
-          <div>
-            <Link
-              className="wd-dashboard-course-link"
-              href="/kanbas/courses/1234/home"
-            >
-              CS1234 React JS
-            </Link>
-            <p className="wd-dashboard-course-title">
-              Full Stack software developer
-            </p>
-            <Link href="/kanbas/courses/1234/home">Go</Link>
+          <div className="wd-dashboard-course col" style={{ width: "300px" }}>
+            <div className="card rounded-3 overflow-hidden">
+              <Link
+                className="wd-dashboard-course-link text-decoration-none text-dark"
+                href="/kanbas/courses/1234/home"
+              >
+                <Image
+                  src="/images/reactjs.jpg"
+                  height={160}
+                  width={300}
+                  alt="React.js"
+                />
+                <div className="card-body">
+                  <h5 className="wd-dashboard-course-title card-title">
+                    CS1234 React JS
+                  </h5>
+                  <p className="wd-dashboard-course-title card-text">
+                    Full Stack software developer
+                  </p>
+                  <button className="btn btn-primary">Go</button>
+                </div>
+              </Link>
+            </div>
           </div>
         </div>
       </div>
