@@ -1,0 +1,1640 @@
+[
+  {
+    "_id": "M101",
+    "name": "Introduction to Rocket Propulsion",
+    "description": "Basic principles of rocket propulsion and rocket engines.",
+    "course": "RS101",
+    "lessons": [
+      {
+        "_id": "L101",
+        "name": "History of Rocketry",
+        "description": "A brief history of rocketry and space exploration.",
+        "module": "M101"
+      },
+      {
+        "_id": "L102",
+        "name": "Rocket Propulsion Fundamentals",
+        "description": "Basic principles of rocket propulsion.",
+        "module": "M101"
+      },
+      {
+        "_id": "L103",
+        "name": "Rocket Engine Types",
+        "description": "Overview of different types of rocket engines.",
+        "module": "M101"
+      }
+    ]
+  },
+  {
+    "_id": "M102",
+    "name": "Fuel and Combustion",
+    "description": "Understanding rocket fuel, combustion processes, and efficiency.",
+    "course": "RS101",
+    "lessons": [
+      {
+        "_id": "L201",
+        "name": "Rocket Fuel",
+        "description": "Overview of different types of rocket fuels.",
+        "module": "M102"
+      },
+      {
+        "_id": "L202",
+        "name": "Combustion Processes",
+        "description": "Understanding combustion processes and efficiency.",
+        "module": "M102"
+      },
+      {
+        "_id": "L203",
+        "name": "Combustion Instability",
+        "description": "Understanding combustion instability and mitigation.",
+        "module": "M102"
+      }
+    ]
+  },
+  {
+    "_id": "M103",
+    "name": "Nozzle Design",
+    "description": "Principles of rocket nozzle design and performance optimization.",
+    "course": "RS101",
+    "lessons": [
+      {
+        "_id": "L301",
+        "name": "Nozzle Design",
+        "description": "Overview of different types of rocket nozzles.",
+        "module": "M103"
+      },
+      {
+        "_id": "L302",
+        "name": "Nozzle Performance",
+        "description": "Understanding nozzle performance and efficiency.",
+        "module": "M103"
+      },
+      {
+        "_id": "L303",
+        "name": "Nozzle Optimization",
+        "description": "Optimizing nozzle design for specific applications.",
+        "module": "M103"
+      }
+    ]
+  },
+  {
+    "_id": "M201",
+    "name": "Fundamentals of Aerodynamics",
+    "description": "Basic aerodynamic concepts and fluid dynamics principles.",
+    "course": "RS102",
+    "lessons": [
+      {
+        "_id": "L401",
+        "name": "Aerodynamic Forces",
+        "description": "Understanding aerodynamic forces and their effects.",
+        "module": "M201"
+      },
+      {
+        "_id": "L402",
+        "name": "Fluid Dynamics",
+        "description": "Overview of fluid dynamics and its applications.",
+        "module": "M201"
+      },
+      {
+        "_id": "L403",
+        "name": "Aerodynamic Drag",
+        "description": "Understanding aerodynamic drag and its effects on vehicles.",
+        "module": "M201"
+      }
+    ]
+  },
+  {
+    "_id": "M202",
+    "name": "Subsonic and Supersonic Flow",
+    "description": "Understanding subsonic and supersonic aerodynamic behaviors.",
+    "course": "RS102",
+    "lessons": [
+      {
+        "_id": "L501",
+        "name": "Subsonic Flow",
+        "description": "Overview of subsonic aerodynamics and its applications.",
+        "module": "M202"
+      },
+      {
+        "_id": "L502",
+        "name": "Supersonic Flow",
+        "description": "Understanding supersonic aerodynamics and its challenges.",
+        "module": "M202"
+      },
+      {
+        "_id": "L503",
+        "name": "Hypersonic Flow",
+        "description": "Introduction to hypersonic aerodynamics and its applications.",
+        "module": "M202"
+      }
+    ]
+  },
+  {
+    "_id": "M203",
+    "name": "Aerodynamic Heating",
+    "description": "Study of aerodynamic heating and thermal protection systems.",
+    "course": "RS102",
+    "lessons": [
+      {
+        "_id": "L601",
+        "name": "Aerodynamic Heating",
+        "description": "Understanding aerodynamic heating and its effects on vehicles.",
+        "module": "M203"
+      },
+      {
+        "_id": "L602",
+        "name": "Thermal Protection Systems",
+        "description": "Overview of thermal protection systems and materials.",
+        "module": "M203"
+      },
+      {
+        "_id": "L603",
+        "name": "Reentry Vehicles",
+        "description": "Introduction to reentry vehicles and their design considerations.",
+        "module": "M203"
+      }
+    ]
+  },
+  {
+    "_id": "M301",
+    "name": "Spacecraft Structural Design",
+    "description": "Fundamentals of designing spacecraft structures and materials selection.",
+    "course": "RS103",
+    "lessons": [
+      {
+        "_id": "L701",
+        "name": "Structural Design Principles",
+        "description": "Basic principles of spacecraft structural design.",
+        "module": "M301"
+      },
+      {
+        "_id": "L702",
+        "name": "Materials Selection",
+        "description": "Overview of materials selection for spacecraft structures.",
+        "module": "M301"
+      },
+      {
+        "_id": "L703",
+        "name": "Structural Analysis",
+        "description": "Introduction to structural analysis and testing.",
+        "module": "M301"
+      }
+    ]
+  },
+  {
+    "_id": "M302",
+    "name": "Orbital Mechanics",
+    "description": "Understanding orbital dynamics and mission planning.",
+    "course": "RS103",
+    "lessons": [
+      {
+        "_id": "L801",
+        "name": "Kepler's Laws",
+        "description": "Overview of Kepler's laws of planetary motion.",
+        "module": "M302"
+      },
+      {
+        "_id": "L802",
+        "name": "Orbital Elements",
+        "description": "Understanding orbital elements and their significance.",
+        "module": "M302"
+      },
+      {
+        "_id": "L803",
+        "name": "Mission Planning",
+        "description": "Introduction to mission planning and trajectory optimization.",
+        "module": "M302"
+      }
+    ]
+  },
+  {
+    "_id": "M303",
+    "name": "Spacecraft Systems Engineering",
+    "description": "Overview of spacecraft systems and subsystems engineering.",
+    "course": "RS103",
+    "lessons": [
+      {
+        "_id": "L901",
+        "name": "Systems Engineering Process",
+        "description": "Introduction to systems engineering process and methodologies.",
+        "module": "M303"
+      },
+      {
+        "_id": "L902",
+        "name": "Spacecraft Subsystems",
+        "description": "Overview of spacecraft subsystems and their functions.",
+        "module": "M303"
+      },
+      {
+        "_id": "L903",
+        "name": "Integration and Testing",
+        "description": "Understanding spacecraft integration and testing processes.",
+        "module": "M303"
+      }
+    ]
+  },
+  {
+    "_id": "M401",
+    "name": "Fundamentals of Organic Chemistry",
+    "description": "Introduction to organic chemistry principles and foundational concepts.",
+    "course": "CH1230",
+    "lessons": [
+      {
+        "_id": "L1001",
+        "name": "Chemical Bonding and Molecular Structure",
+        "description": "Overview of bonding types and molecular structures in organic compounds.",
+        "module": "M401"
+      },
+      {
+        "_id": "L1002",
+        "name": "Functional Groups",
+        "description": "Introduction to functional groups and their roles in organic reactions.",
+        "module": "M401"
+      },
+      {
+        "_id": "L1003",
+        "name": "Isomerism",
+        "description": "Understanding isomers, types of isomerism, and their significance in organic chemistry.",
+        "module": "M401"
+      }
+    ]
+  },
+  {
+    "_id": "M402",
+    "name": "Hydrocarbons",
+    "description": "Study of alkanes, alkenes, alkynes, and aromatic hydrocarbons.",
+    "course": "CH1230",
+    "lessons": [
+      {
+        "_id": "L1101",
+        "name": "Alkanes and Cycloalkanes",
+        "description": "Understanding the structure, properties, and reactions of alkanes and cycloalkanes.",
+        "module": "M402"
+      },
+      {
+        "_id": "L1102",
+        "name": "Alkenes and Alkynes",
+        "description": "Exploration of the structure, properties, and reactions of alkenes and alkynes.",
+        "module": "M402"
+      },
+      {
+        "_id": "L1103",
+        "name": "Aromatic Hydrocarbons",
+        "description": "Introduction to aromaticity, benzene, and its derivatives.",
+        "module": "M402"
+      }
+    ]
+  },
+  {
+    "_id": "M403",
+    "name": "Reactions and Mechanisms",
+    "description": "Exploration of organic reactions and mechanisms in detail.",
+    "course": "CH1230",
+    "lessons": [
+      {
+        "_id": "L1201",
+        "name": "Substitution Reactions",
+        "description": "Understanding nucleophilic and electrophilic substitution reactions.",
+        "module": "M403"
+      },
+      {
+        "_id": "L1202",
+        "name": "Elimination Reactions",
+        "description": "Study of elimination reactions and their mechanisms.",
+        "module": "M403"
+      },
+      {
+        "_id": "L1203",
+        "name": "Addition Reactions",
+        "description": "Overview of addition reactions to alkenes and alkynes.",
+        "module": "M403"
+      }
+    ]
+  },
+  {
+    "_id": "M501",
+    "name": "Introduction to Inorganic Chemistry",
+    "description": "Fundamental concepts and principles in inorganic chemistry.",
+    "course": "CH1240",
+    "lessons": [
+      {
+        "_id": "L1301",
+        "name": "Periodic Table and Atomic Structure",
+        "description": "Overview of the periodic table, atomic structure, and periodic trends.",
+        "module": "M501"
+      },
+      {
+        "_id": "L1302",
+        "name": "Chemical Bonding in Inorganic Compounds",
+        "description": "Exploration of ionic, covalent, and metallic bonding in inorganic compounds.",
+        "module": "M501"
+      },
+      {
+        "_id": "L1303",
+        "name": "Symmetry and Group Theory",
+        "description": "Introduction to molecular symmetry and its applications in inorganic chemistry.",
+        "module": "M501"
+      }
+    ]
+  },
+  {
+    "_id": "M502",
+    "name": "Transition Metals and Coordination Chemistry",
+    "description": "Study of transition metals, coordination compounds, and their properties.",
+    "course": "CH1240",
+    "lessons": [
+      {
+        "_id": "L1401",
+        "name": "Transition Metal Chemistry",
+        "description": "Understanding the chemistry of transition metals and their electronic configurations.",
+        "module": "M502"
+      },
+      {
+        "_id": "L1402",
+        "name": "Coordination Compounds",
+        "description": "Introduction to ligands, coordination numbers, and geometry of coordination complexes.",
+        "module": "M502"
+      },
+      {
+        "_id": "L1403",
+        "name": "Crystal Field Theory",
+        "description": "Exploring the crystal field theory and its implications in the stability and color of coordination compounds.",
+        "module": "M502"
+      }
+    ]
+  },
+  {
+    "_id": "M503",
+    "name": "Main Group Chemistry",
+    "description": "In-depth study of the chemistry of main group elements and their compounds.",
+    "course": "CH1240",
+    "lessons": [
+      {
+        "_id": "L1501",
+        "name": "Group 1 and 2 Elements",
+        "description": "Study of alkali and alkaline earth metals, their properties, and reactions.",
+        "module": "M503"
+      },
+      {
+        "_id": "L1502",
+        "name": "Group 13 to Group 18 Elements",
+        "description": "Exploring the chemistry of p-block elements from group 13 to group 18.",
+        "module": "M503"
+      },
+      {
+        "_id": "L1503",
+        "name": "Inorganic Reaction Mechanisms",
+        "description": "Introduction to the reaction mechanisms of inorganic compounds, including redox reactions and catalysis.",
+        "module": "M503"
+      }
+    ]
+  },
+  {
+    "_id": "M601",
+    "name": "Thermodynamics",
+    "description": "Fundamental principles of thermodynamics and their applications in chemistry.",
+    "course": "CH1250",
+    "lessons": [
+      {
+        "_id": "L1601",
+        "name": "Laws of Thermodynamics",
+        "description": "Introduction to the first, second, and third laws of thermodynamics.",
+        "module": "M601"
+      },
+      {
+        "_id": "L1602",
+        "name": "Enthalpy and Entropy",
+        "description": "Study of enthalpy, entropy, and their significance in chemical processes.",
+        "module": "M601"
+      },
+      {
+        "_id": "L1603",
+        "name": "Gibbs Free Energy",
+        "description": "Understanding Gibbs free energy and its role in predicting spontaneity of reactions.",
+        "module": "M601"
+      }
+    ]
+  },
+  {
+    "_id": "M602",
+    "name": "Chemical Kinetics",
+    "description": "Study of the rates of chemical reactions and factors affecting them.",
+    "course": "CH1250",
+    "lessons": [
+      {
+        "_id": "L1701",
+        "name": "Reaction Rates",
+        "description": "Introduction to reaction rates, rate laws, and order of reactions.",
+        "module": "M602"
+      },
+      {
+        "_id": "L1702",
+        "name": "Activation Energy",
+        "description": "Understanding activation energy and its effect on reaction kinetics.",
+        "module": "M602"
+      },
+      {
+        "_id": "L1703",
+        "name": "Catalysis",
+        "description": "Study of catalysts and their role in increasing reaction rates.",
+        "module": "M602"
+      }
+    ]
+  },
+  {
+    "_id": "M603",
+    "name": "Quantum Chemistry",
+    "description": "Introduction to quantum mechanics and its applications in physical chemistry.",
+    "course": "CH1250",
+    "lessons": [
+      {
+        "_id": "L1801",
+        "name": "Wave-Particle Duality",
+        "description": "Exploring the concept of wave-particle duality and its significance in quantum chemistry.",
+        "module": "M603"
+      },
+      {
+        "_id": "L1802",
+        "name": "Schrödinger Equation",
+        "description": "Introduction to the Schrödinger equation and its use in modeling quantum systems.",
+        "module": "M603"
+      },
+      {
+        "_id": "L1803",
+        "name": "Atomic and Molecular Orbitals",
+        "description": "Study of atomic and molecular orbitals and their role in chemical bonding.",
+        "module": "M603"
+      }
+    ]
+  },
+  {
+    "_id": "M701",
+    "name": "Introduction to Elvish Languages",
+    "description": "Overview of the Elvish languages, including Quenya and Sindarin, and their historical context.",
+    "course": "ME101",
+    "lessons": [
+      {
+        "_id": "L1901",
+        "name": "Quenya: The High Elven Tongue",
+        "description": "Study of Quenya, its grammar, vocabulary, and phonetics.",
+        "module": "M701"
+      },
+      {
+        "_id": "L1902",
+        "name": "Sindarin: The Grey Elven Language",
+        "description": "Introduction to Sindarin, its origins, grammar rules, and key vocabulary.",
+        "module": "M701"
+      },
+      {
+        "_id": "L1903",
+        "name": "Elvish Script: Tengwar",
+        "description": "Exploring the Tengwar script used for writing both Quenya and Sindarin.",
+        "module": "M701"
+      }
+    ]
+  },
+  {
+    "_id": "M702",
+    "name": "Languages of Men and Dwarves",
+    "description": "Study of the languages of Men and Dwarves in Middle-earth, including Adûnaic and Khuzdul.",
+    "course": "ME101",
+    "lessons": [
+      {
+        "_id": "L2001",
+        "name": "Adûnaic: The Language of Númenor",
+        "description": "Introduction to Adûnaic, its history, grammar, and significance.",
+        "module": "M702"
+      },
+      {
+        "_id": "L2002",
+        "name": "Khuzdul: The Dwarven Tongue",
+        "description": "Study of Khuzdul, the secretive language of the Dwarves, its structure and vocabulary.",
+        "module": "M702"
+      },
+      {
+        "_id": "L2003",
+        "name": "Cirth: The Runes of Middle-earth",
+        "description": "Exploring the Cirth runes, used by Dwarves and Men for inscriptions.",
+        "module": "M702"
+      }
+    ]
+  },
+  {
+    "_id": "M703",
+    "name": "Other Languages of Middle-earth",
+    "description": "Overview of other languages spoken in Middle-earth, including the Black Speech and Entish.",
+    "course": "ME101",
+    "lessons": [
+      {
+        "_id": "L2101",
+        "name": "The Black Speech of Mordor",
+        "description": "Study of the Black Speech, its creation, grammar, and usage in Middle-earth.",
+        "module": "M703"
+      },
+      {
+        "_id": "L2102",
+        "name": "Entish: The Language of the Ents",
+        "description": "Introduction to Entish, the slow and complex language of the Ents.",
+        "module": "M703"
+      },
+      {
+        "_id": "L2103",
+        "name": "Westron: The Common Tongue",
+        "description": "Exploration of Westron, the most widely spoken language in Middle-earth.",
+        "module": "M703"
+      }
+    ]
+  },
+  {
+    "_id": "M801",
+    "name": "Foundations of Diplomacy in Middle-earth",
+    "description": "An introduction to the historical and cultural foundations of diplomacy among the Free Peoples of Middle-earth.",
+    "course": "ME102",
+    "lessons": [
+      {
+        "_id": "L2201",
+        "name": "The Free Peoples of Middle-earth",
+        "description": "Overview of the Free Peoples, including Men, Elves, Dwarves, and Hobbits, and their roles in Middle-earth's history.",
+        "module": "M801"
+      },
+      {
+        "_id": "L2202",
+        "name": "Early Alliances and Treaties",
+        "description": "Study of early alliances, including the Last Alliance of Elves and Men, and their impact on Middle-earth's politics.",
+        "module": "M801"
+      },
+      {
+        "_id": "L2203",
+        "name": "The Role of Wizards in Diplomacy",
+        "description": "Exploring how the Istari (Wizards) influenced diplomatic relations between races.",
+        "module": "M801"
+      }
+    ]
+  },
+  {
+    "_id": "M802",
+    "name": "Diplomatic Relations between Elves and Men",
+    "description": "A detailed exploration of the complex diplomatic relationships between the Elves and Men throughout the Ages.",
+    "course": "ME102",
+    "lessons": [
+      {
+        "_id": "L2301",
+        "name": "The Númenóreans and the Elves",
+        "description": "Study of Númenor’s interactions with Elves, focusing on the friendships and conflicts between them.",
+        "module": "M802"
+      },
+      {
+        "_id": "L2302",
+        "name": "The Kings of Gondor and Elven Lords",
+        "description": "Analysis of the relationships between the rulers of Gondor and the Elven leaders such as Elrond and Galadriel.",
+        "module": "M802"
+      },
+      {
+        "_id": "L2303",
+        "name": "Cultural Differences and Their Impact",
+        "description": "Examining how cultural differences between Elves and Men affected diplomatic negotiations and alliances.",
+        "module": "M802"
+      }
+    ]
+  },
+  {
+    "_id": "M803",
+    "name": "The Role of Conflict in Diplomacy",
+    "description": "Exploring how wars and conflicts shaped diplomatic efforts and relationships in Middle-earth.",
+    "course": "ME102",
+    "lessons": [
+      {
+        "_id": "L2401",
+        "name": "The War of the Last Alliance",
+        "description": "Study of how the Last Alliance of Elves and Men was formed in response to the threat of Sauron.",
+        "module": "M803"
+      },
+      {
+        "_id": "L2402",
+        "name": "The Council of Elrond",
+        "description": "Analysis of the Council of Elrond and its significance in bringing together disparate races to address the One Ring's threat.",
+        "module": "M803"
+      },
+      {
+        "_id": "L2403",
+        "name": "Post-War Diplomacy in the Fourth Age",
+        "description": "Exploration of how peace and cooperation were established after the defeat of Sauron and the dawn of the Fourth Age.",
+        "module": "M803"
+      }
+    ]
+  },
+  {
+    "_id": "M901",
+    "name": "The Nature and Origins of Magic in Middle-earth",
+    "description": "Introduction to the origins and different forms of magic in Middle-earth, including its practitioners and sources.",
+    "course": "ME103",
+    "lessons": [
+      {
+        "_id": "L2501",
+        "name": "The Ainur and the Creation of Arda",
+        "description": "Study of the Ainur, their role in shaping Arda, and how their powers influenced the world’s magical essence.",
+        "module": "M901"
+      },
+      {
+        "_id": "L2502",
+        "name": "The Valar and Maiar: Guardians of Magic",
+        "description": "Exploration of the Valar and Maiar, their divine magic, and their interaction with the peoples of Middle-earth.",
+        "module": "M901"
+      },
+      {
+        "_id": "L2503",
+        "name": "The Nature of Enchantment in Middle-earth",
+        "description": "Understanding how enchantment and magic are embedded in the natural world of Middle-earth, from forests to artifacts.",
+        "module": "M901"
+      }
+    ]
+  },
+  {
+    "_id": "M902",
+    "name": "Magic of the Free Peoples: Elves, Men, and Dwarves",
+    "description": "Exploring the different types of magic practiced by the Free Peoples, including Elven sorcery, Dwarven craftsmanship, and the subtle magic of Men.",
+    "course": "ME103",
+    "lessons": [
+      {
+        "_id": "L2601",
+        "name": "Elven Magic: Powers of Preservation and Creation",
+        "description": "Study of Elven magic, focusing on their skills in preservation, healing, and the creation of magical items like the Rings of Power.",
+        "module": "M902"
+      },
+      {
+        "_id": "L2602",
+        "name": "Dwarven Craftsmanship: Magic in Metal and Stone",
+        "description": "Understanding the Dwarves' unique magic, primarily used in the crafting of weapons, armor, and their legendary works like the gates of Moria.",
+        "module": "M902"
+      },
+      {
+        "_id": "L2603",
+        "name": "Men and Magic: Númenórean Lore",
+        "description": "Exploring the magical traditions of Men, with a focus on Númenor and their interaction with the unseen world.",
+        "module": "M902"
+      }
+    ]
+  },
+  {
+    "_id": "M903",
+    "name": "Dark Magic and the Forces of Evil",
+    "description": "A detailed study of the dark magic used by Sauron, Morgoth, and their servants, and its corrupting influence on Middle-earth.",
+    "course": "ME103",
+    "lessons": [
+      {
+        "_id": "L2701",
+        "name": "The Sorcery of Morgoth and Sauron",
+        "description": "Exploration of the dark magic practiced by Morgoth and Sauron, their ability to corrupt and dominate, and the creation of dark artifacts like the One Ring.",
+        "module": "M903"
+      },
+      {
+        "_id": "L2702",
+        "name": "The Black Speech and Curses of Mordor",
+        "description": "Study of the Black Speech, its connection to dark magic, and the use of curses in controlling others and enhancing evil powers.",
+        "module": "M903"
+      },
+      {
+        "_id": "L2703",
+        "name": "Necromancy and the Undead",
+        "description": "Understanding necromancy, its practice in Middle-earth, and its use in raising spirits like the Ringwraiths and Barrow-wights.",
+        "module": "M903"
+      }
+    ]
+  },
+  {
+    "_id": "M1001",
+    "name": "Foundations of Democratic Education",
+    "description": "An introduction to the key principles and historical development of democratic education.",
+    "course": "EDU201",
+    "lessons": [
+      {
+        "_id": "L2801",
+        "name": "Philosophical Roots of Democratic Education",
+        "description": "Exploring the philosophical foundations of democratic education, including the works of Rousseau, Dewey, and Freire.",
+        "module": "M1001"
+      },
+      {
+        "_id": "L2802",
+        "name": "Education for Citizenship and Democracy",
+        "description": "Understanding the role of education in preparing individuals for active participation in democratic society.",
+        "module": "M1001"
+      },
+      {
+        "_id": "L2803",
+        "name": "Key Movements in Democratic Education",
+        "description": "Study of significant movements in democratic education, including progressive education and deschooling.",
+        "module": "M1001"
+      }
+    ]
+  },
+  {
+    "_id": "M1002",
+    "name": "Democratic Practices in Schools",
+    "description": "Exploring how democratic values and practices are integrated into schools and educational systems.",
+    "course": "EDU201",
+    "lessons": [
+      {
+        "_id": "L2901",
+        "name": "Student Voice and Participation",
+        "description": "Examining the importance of student voice, participation in decision-making, and collaborative learning.",
+        "module": "M1002"
+      },
+      {
+        "_id": "L2902",
+        "name": "Curriculum Design for Democratic Education",
+        "description": "Designing a curriculum that fosters critical thinking, social justice, and civic responsibility.",
+        "module": "M1002"
+      },
+      {
+        "_id": "L2903",
+        "name": "Teacher Roles in Democratic Classrooms",
+        "description": "Understanding the evolving role of teachers as facilitators of democratic dialogue and inquiry-based learning.",
+        "module": "M1002"
+      }
+    ]
+  },
+  {
+    "_id": "M1003",
+    "name": "Challenges and Innovations in Democratic Education",
+    "description": "A critical look at the challenges, critiques, and future of democratic education in the modern world.",
+    "course": "EDU201",
+    "lessons": [
+      {
+        "_id": "L3001",
+        "name": "Barriers to Democratic Education",
+        "description": "Analyzing the barriers to implementing democratic education, including systemic inequalities and rigid curricula.",
+        "module": "M1003"
+      },
+      {
+        "_id": "L3002",
+        "name": "Innovative Approaches to Democratic Learning",
+        "description": "Exploring innovative approaches such as experiential learning, project-based learning, and democratic schools.",
+        "module": "M1003"
+      },
+      {
+        "_id": "L3003",
+        "name": "Global Perspectives on Democratic Education",
+        "description": "Comparing democratic education models around the world and their impact on student engagement and social change.",
+        "module": "M1003"
+      }
+    ]
+  },
+  {
+    "_id": "M1101",
+    "name": "Philosophical Foundations of Independence",
+    "description": "An exploration of the core philosophical principles that have historically influenced movements for independence and liberation.",
+    "course": "HIS301",
+    "lessons": [
+      {
+        "_id": "L3101",
+        "name": "The Enlightenment and Self-Determination",
+        "description": "Study of Enlightenment ideals such as autonomy, reason, and individual rights as foundational to independence movements.",
+        "module": "M1101"
+      },
+      {
+        "_id": "L3102",
+        "name": "Natural Rights and Political Freedom",
+        "description": "Exploring the role of natural rights theory in advocating for political freedom and independence.",
+        "module": "M1101"
+      },
+      {
+        "_id": "L3103",
+        "name": "Rousseau, Locke, and the Social Contract",
+        "description": "Understanding the social contract theories of Rousseau and Locke and their influence on revolutionary thought.",
+        "module": "M1101"
+      }
+    ]
+  },
+  {
+    "_id": "M1102",
+    "name": "Revolutionary Thought and Liberation Movements",
+    "description": "A study of key revolutionary thinkers and their influence on global independence and liberation movements.",
+    "course": "HIS301",
+    "lessons": [
+      {
+        "_id": "L3201",
+        "name": "Karl Marx and Class Struggle",
+        "description": "Analysis of Marxist theory, focusing on class struggle as a key driver of liberation and revolution.",
+        "module": "M1102"
+      },
+      {
+        "_id": "L3202",
+        "name": "Frantz Fanon: Decolonization and the Psychology of Oppression",
+        "description": "Study of Fanon’s philosophy on decolonization, violence, and the psychological effects of colonization.",
+        "module": "M1102"
+      },
+      {
+        "_id": "L3203",
+        "name": "Che Guevara and Guerrilla Warfare",
+        "description": "Exploring the revolutionary tactics of Che Guevara and the role of guerrilla warfare in liberation movements.",
+        "module": "M1102"
+      }
+    ]
+  },
+  {
+    "_id": "M1103",
+    "name": "Contemporary Perspectives on Liberation",
+    "description": "An analysis of modern-day interpretations and applications of liberation philosophy in various global contexts.",
+    "course": "HIS301",
+    "lessons": [
+      {
+        "_id": "L3301",
+        "name": "Postcolonial Theory and Global Justice",
+        "description": "Examining postcolonial theory and its focus on cultural, political, and economic liberation after colonial rule.",
+        "module": "M1103"
+      },
+      {
+        "_id": "L3302",
+        "name": "Feminism and Liberation",
+        "description": "Study of feminist theory as a liberation movement, advocating for gender equality and challenging patriarchal systems.",
+        "module": "M1103"
+      },
+      {
+        "_id": "L3303",
+        "name": "Indigenous Movements for Autonomy",
+        "description": "Exploring contemporary indigenous movements striving for political, cultural, and territorial autonomy.",
+        "module": "M1103"
+      }
+    ]
+  },
+  {
+    "_id": "M1201",
+    "name": "The Beginnings of Public Education",
+    "description": "An exploration of the emergence of public education systems in the early 19th century and their impact on society.",
+    "course": "EDU303",
+    "lessons": [
+      {
+        "_id": "L3401",
+        "name": "The Origins of Public Education",
+        "description": "Study of the social, political, and economic factors that led to the development of public education systems.",
+        "module": "M1201"
+      },
+      {
+        "_id": "L3402",
+        "name": "The Role of State and Education",
+        "description": "Examination of how governments in Europe and North America began to take responsibility for mass education.",
+        "module": "M1201"
+      },
+      {
+        "_id": "L3403",
+        "name": "Education as a Tool for Social Mobility",
+        "description": "Exploring the idea of education as a means to provide opportunities for the working classes and marginalized groups.",
+        "module": "M1201"
+      }
+    ]
+  },
+  {
+    "_id": "M1202",
+    "name": "Pedagogical Innovations of the Early 19th Century",
+    "description": "A study of new teaching methods and educational theories that emerged during the early 19th century.",
+    "course": "EDU303",
+    "lessons": [
+      {
+        "_id": "L3501",
+        "name": "Pestalozzi’s Child-Centered Approach",
+        "description": "Analysis of Johann Heinrich Pestalozzi's educational philosophy, emphasizing hands-on learning and emotional development.",
+        "module": "M1202"
+      },
+      {
+        "_id": "L3502",
+        "name": "The Lancaster and Bell Systems",
+        "description": "Study of the monitorial systems developed by Joseph Lancaster and Andrew Bell, designed to educate large numbers of students efficiently.",
+        "module": "M1202"
+      },
+      {
+        "_id": "L3503",
+        "name": "Moral Education and Character Development",
+        "description": "Exploring the emphasis on moral and character education as a core component of 19th-century pedagogical practices.",
+        "module": "M1202"
+      }
+    ]
+  },
+  {
+    "_id": "M1203",
+    "name": "Challenges and Reforms in 19th Century Education",
+    "description": "Understanding the challenges faced by early educational systems and the subsequent reforms that aimed to address them.",
+    "course": "EDU303",
+    "lessons": [
+      {
+        "_id": "L3601",
+        "name": "Access to Education: Gender and Class Struggles",
+        "description": "Study of the barriers to education faced by women and the lower classes, and early movements to address these inequities.",
+        "module": "M1203"
+      },
+      {
+        "_id": "L3602",
+        "name": "Educational Reform Movements",
+        "description": "Exploration of key reformers like Horace Mann and their influence on education policy and practices in the 19th century.",
+        "module": "M1203"
+      },
+      {
+        "_id": "L3603",
+        "name": "The Rise of Teacher Training Institutions",
+        "description": "Understanding the establishment of normal schools and the professionalization of teaching in response to educational needs.",
+        "module": "M1203"
+      }
+    ]
+  },
+  {
+    "_id": "M1301",
+    "name": "Introduction to Christian Ethics",
+    "description": "An overview of the key concepts and historical development of Christian ethics within the broader context of moral philosophy.",
+    "course": "THEO101",
+    "lessons": [
+      {
+        "_id": "L3701",
+        "name": "Biblical Foundations of Ethics",
+        "description": "Exploring ethical teachings in the Old and New Testaments and their implications for Christian living.",
+        "module": "M1301"
+      },
+      {
+        "_id": "L3702",
+        "name": "Historical Development of Christian Ethics",
+        "description": "Examining the evolution of Christian ethical thought from the early Church to the present day.",
+        "module": "M1301"
+      },
+      {
+        "_id": "L3703",
+        "name": "Key Ethical Theories in Christianity",
+        "description": "Study of major ethical theories in Christianity, including virtue ethics, deontological ethics, and consequentialism.",
+        "module": "M1301"
+      }
+    ]
+  },
+  {
+    "_id": "M1302",
+    "name": "Major Themes in Christian Ethics",
+    "description": "A deeper exploration of significant themes and issues in Christian ethical discussions.",
+    "course": "THEO101",
+    "lessons": [
+      {
+        "_id": "L3801",
+        "name": "Love and Justice in Christian Ethics",
+        "description": "Understanding the relationship between love and justice as central themes in Christian moral thought.",
+        "module": "M1302"
+      },
+      {
+        "_id": "L3802",
+        "name": "Sin, Redemption, and Moral Responsibility",
+        "description": "Examining concepts of sin and redemption and their implications for moral responsibility in Christian life.",
+        "module": "M1302"
+      },
+      {
+        "_id": "L3803",
+        "name": "Ethics of the Kingdom of God",
+        "description": "Exploring the ethical implications of the Kingdom of God and how it informs Christian behavior and decision-making.",
+        "module": "M1302"
+      }
+    ]
+  },
+  {
+    "_id": "M1303",
+    "name": "Contemporary Issues in Christian Ethics",
+    "description": "Analyzing how Christian ethics addresses contemporary moral dilemmas and societal challenges.",
+    "course": "THEO101",
+    "lessons": [
+      {
+        "_id": "L3901",
+        "name": "Bioethics and the Sanctity of Life",
+        "description": "Exploring Christian perspectives on bioethical issues, including abortion, euthanasia, and medical ethics.",
+        "module": "M1303"
+      },
+      {
+        "_id": "L3902",
+        "name": "Social Justice and Economic Ethics",
+        "description": "Understanding the role of Christian ethics in advocating for social justice and addressing economic inequalities.",
+        "module": "M1303"
+      },
+      {
+        "_id": "L3903",
+        "name": "Environmental Ethics in Christian Thought",
+        "description": "Examining the ethical responsibilities of Christians towards creation care and environmental sustainability.",
+        "module": "M1303"
+      }
+    ]
+  },
+  {
+    "_id": "M1401",
+    "name": "Origins of Early Christianity",
+    "description": "An exploration of the historical and cultural context of the emergence of Christianity in the first century.",
+    "course": "HIS201",
+    "lessons": [
+      {
+        "_id": "L4001",
+        "name": "Historical Context of Early Christianity",
+        "description": "Understanding the socio-political and religious environment of the Roman Empire during the time of Jesus.",
+        "module": "M1401"
+      },
+      {
+        "_id": "L4002",
+        "name": "Life and Teachings of Jesus",
+        "description": "Exploring the life of Jesus Christ and the key teachings that laid the foundation for Christianity.",
+        "module": "M1401"
+      },
+      {
+        "_id": "L4003",
+        "name": "The Role of the Apostles",
+        "description": "Examining the contributions of the apostles in spreading the message of Christianity after Jesus' death.",
+        "module": "M1401"
+      }
+    ]
+  },
+  {
+    "_id": "M1402",
+    "name": "The Formation of Christian Communities",
+    "description": "A study of how early Christian communities were established and their organizational structures.",
+    "course": "HIS201",
+    "lessons": [
+      {
+        "_id": "L4101",
+        "name": "The First Christian Converts",
+        "description": "Exploring the demographics and motivations of the first converts to Christianity.",
+        "module": "M1402"
+      },
+      {
+        "_id": "L4102",
+        "name": "Worship Practices in Early Christianity",
+        "description": "Understanding the development of worship practices, including rituals and communal gatherings.",
+        "module": "M1402"
+      },
+      {
+        "_id": "L4103",
+        "name": "The Role of Women in Early Churches",
+        "description": "Examining the roles women played in the establishment and growth of early Christian communities.",
+        "module": "M1402"
+      }
+    ]
+  },
+  {
+    "_id": "M1403",
+    "name": "Challenges and Persecutions",
+    "description": "Analyzing the challenges early Christians faced, including persecution and theological debates.",
+    "course": "HIS201",
+    "lessons": [
+      {
+        "_id": "L4201",
+        "name": "Persecution of Early Christians",
+        "description": "Studying the reasons behind the persecution of Christians in the Roman Empire and notable martyrdoms.",
+        "module": "M1403"
+      },
+      {
+        "_id": "L4202",
+        "name": "Theological Conflicts and Councils",
+        "description": "Exploring key theological disputes within early Christianity and the formation of church councils.",
+        "module": "M1403"
+      },
+      {
+        "_id": "L4203",
+        "name": "The Spread of Christianity Beyond Judea",
+        "description": "Understanding how Christianity spread throughout the Roman Empire and beyond during the Apostolic Age.",
+        "module": "M1403"
+      }
+    ]
+  },
+  {
+    "_id": "M1501",
+    "name": "Foundations of Christian Leadership",
+    "description": "An exploration of the biblical and theological foundations of leadership within Christian communities.",
+    "course": "MIN301",
+    "lessons": [
+      {
+        "_id": "L4301",
+        "name": "Biblical Models of Leadership",
+        "description": "Examining leadership styles and examples from the Bible, including Moses, David, and Jesus.",
+        "module": "M1501"
+      },
+      {
+        "_id": "L4302",
+        "name": "Servant Leadership in the Christian Context",
+        "description": "Understanding the concept of servant leadership as taught by Jesus and its implications for Christian leaders.",
+        "module": "M1501"
+      },
+      {
+        "_id": "L4303",
+        "name": "Theological Perspectives on Leadership",
+        "description": "Exploring how various theological perspectives inform our understanding of leadership in Christian communities.",
+        "module": "M1501"
+      }
+    ]
+  },
+  {
+    "_id": "M1502",
+    "name": "Leadership Skills and Practices",
+    "description": "A practical approach to developing essential leadership skills for effective service in Christian contexts.",
+    "course": "MIN301",
+    "lessons": [
+      {
+        "_id": "L4401",
+        "name": "Communication Skills for Leaders",
+        "description": "Developing effective communication strategies for leaders in Christian communities.",
+        "module": "M1502"
+      },
+      {
+        "_id": "L4402",
+        "name": "Conflict Resolution and Mediation",
+        "description": "Understanding conflict resolution techniques and mediation processes in church settings.",
+        "module": "M1502"
+      },
+      {
+        "_id": "L4403",
+        "name": "Team Building and Collaboration",
+        "description": "Exploring strategies for building effective teams and fostering collaboration within Christian ministries.",
+        "module": "M1502"
+      }
+    ]
+  },
+  {
+    "_id": "M1503",
+    "name": "Service and Community Engagement",
+    "description": "Analyzing the role of service and community engagement in Christian leadership and ministry.",
+    "course": "MIN301",
+    "lessons": [
+      {
+        "_id": "L4501",
+        "name": "The Theology of Service",
+        "description": "Exploring the biblical basis for service and its significance in the life of Christian leaders.",
+        "module": "M1503"
+      },
+      {
+        "_id": "L4502",
+        "name": "Community Needs Assessment",
+        "description": "Understanding how to assess community needs to develop relevant service initiatives.",
+        "module": "M1503"
+      },
+      {
+        "_id": "L4503",
+        "name": "Mobilizing for Service Projects",
+        "description": "Examining strategies for mobilizing church members for service and outreach projects.",
+        "module": "M1503"
+      }
+    ]
+  },
+  {
+    "_id": "M1601",
+    "name": "Introduction to Sufi Philosophy",
+    "description": "An exploration of the key concepts and historical development of Sufi philosophy within the broader context of Islamic thought.",
+    "course": "ISL301",
+    "lessons": [
+      {
+        "_id": "L4601",
+        "name": "Origins of Sufism",
+        "description": "Understanding the historical and cultural roots of Sufism and its emergence within Islam.",
+        "module": "M1601"
+      },
+      {
+        "_id": "L4602",
+        "name": "Key Figures in Sufi Thought",
+        "description": "Examining the contributions of influential Sufi thinkers such as Rumi, Al-Ghazali, and Ibn Arabi.",
+        "module": "M1601"
+      },
+      {
+        "_id": "L4603",
+        "name": "Core Concepts of Sufi Philosophy",
+        "description": "Exploring key Sufi concepts such as love (ishq), unity (tawhid), and the self (nafs).",
+        "module": "M1601"
+      }
+    ]
+  },
+  {
+    "_id": "M1602",
+    "name": "Practices and Rituals in Sufism",
+    "description": "A study of the various practices and rituals that characterize Sufi traditions and their significance.",
+    "course": "ISL301",
+    "lessons": [
+      {
+        "_id": "L4701",
+        "name": "Dhikr: The Remembrance of God",
+        "description": "Exploring the practice of dhikr as a means of spiritual purification and connection with the Divine.",
+        "module": "M1602"
+      },
+      {
+        "_id": "L4702",
+        "name": "Sufi Poetry and Literature",
+        "description": "Analyzing the role of poetry in Sufi expression, focusing on poets like Rumi and Hafiz.",
+        "module": "M1602"
+      },
+      {
+        "_id": "L4703",
+        "name": "Sufi Orders and Their Practices",
+        "description": "Examining different Sufi orders (tariqas) and their unique practices and teachings.",
+        "module": "M1602"
+      }
+    ]
+  },
+  {
+    "_id": "M1603",
+    "name": "Sufism and Contemporary Issues",
+    "description": "Analyzing how Sufi philosophy addresses contemporary moral, social, and spiritual issues.",
+    "course": "ISL301",
+    "lessons": [
+      {
+        "_id": "L4801",
+        "name": "Sufism and Interfaith Dialogue",
+        "description": "Exploring the role of Sufism in promoting interfaith understanding and cooperation.",
+        "module": "M1603"
+      },
+      {
+        "_id": "L4802",
+        "name": "The Relevance of Sufism in Modern Society",
+        "description": "Understanding the importance of Sufi teachings in addressing contemporary spiritual crises.",
+        "module": "M1603"
+      },
+      {
+        "_id": "L4803",
+        "name": "Critiques of Sufism",
+        "description": "Examining critiques of Sufi practices and beliefs from both within and outside the Islamic tradition.",
+        "module": "M1603"
+      }
+    ]
+  },
+  {
+    "_id": "M1701",
+    "name": "Foundations of Islamic Ethics",
+    "description": "An overview of the fundamental principles and sources of ethical thought in Islam.",
+    "course": "ISL202",
+    "lessons": [
+      {
+        "_id": "L4901",
+        "name": "Sources of Islamic Ethics",
+        "description": "Exploring the Qur'an and Hadith as primary sources of ethical guidance in Islam.",
+        "module": "M1701"
+      },
+      {
+        "_id": "L4902",
+        "name": "The Concept of Goodness in Islam",
+        "description": "Understanding the Islamic conception of goodness (khayr) and its implications for moral behavior.",
+        "module": "M1701"
+      },
+      {
+        "_id": "L4903",
+        "name": "Islamic Moral Philosophy",
+        "description": "Examining key philosophical contributions to Islamic ethics, including works by Al-Farabi, Al-Ghazali, and Ibn Rushd.",
+        "module": "M1701"
+      }
+    ]
+  },
+  {
+    "_id": "M1702",
+    "name": "Key Ethical Principles in Islam",
+    "description": "A study of essential ethical principles that guide behavior and decision-making in Islamic teachings.",
+    "course": "ISL202",
+    "lessons": [
+      {
+        "_id": "L5001",
+        "name": "Justice (Adl) and Equity",
+        "description": "Exploring the concepts of justice and equity in Islamic teachings and their relevance in society.",
+        "module": "M1702"
+      },
+      {
+        "_id": "L5002",
+        "name": "Compassion and Mercy (Rahma)",
+        "description": "Understanding the importance of compassion and mercy as fundamental ethical values in Islam.",
+        "module": "M1702"
+      },
+      {
+        "_id": "L5003",
+        "name": "Responsibility and Accountability",
+        "description": "Examining the notions of responsibility and accountability in individual and collective contexts.",
+        "module": "M1702"
+      }
+    ]
+  },
+  {
+    "_id": "M1703",
+    "name": "Contemporary Ethical Issues in Islam",
+    "description": "Analyzing how Islamic ethical teachings address contemporary moral dilemmas and societal challenges.",
+    "course": "ISL202",
+    "lessons": [
+      {
+        "_id": "L5101",
+        "name": "Bioethics in Islamic Perspective",
+        "description": "Exploring Islamic perspectives on bioethical issues such as medical ethics, euthanasia, and reproductive rights.",
+        "module": "M1703"
+      },
+      {
+        "_id": "L5102",
+        "name": "Social Justice and Economic Ethics",
+        "description": "Understanding the role of Islamic ethics in promoting social justice and addressing economic disparities.",
+        "module": "M1703"
+      },
+      {
+        "_id": "L5103",
+        "name": "Environmental Ethics in Islam",
+        "description": "Examining the ethical responsibilities of Muslims towards the environment and sustainability.",
+        "module": "M1703"
+      }
+    ]
+  },
+  {
+    "_id": "M1801",
+    "name": "Introduction to Islamic Esotericism",
+    "description": "An overview of the key concepts and historical development of esoteric thought within Islam.",
+    "course": "ISL403",
+    "lessons": [
+      {
+        "_id": "L5201",
+        "name": "Historical Background of Esotericism",
+        "description": "Exploring the origins and historical development of esoteric traditions in Islamic thought.",
+        "module": "M1801"
+      },
+      {
+        "_id": "L5202",
+        "name": "Key Concepts in Islamic Esotericism",
+        "description": "Understanding essential concepts such as the inner meanings (batin) and the outer meanings (zahir) of texts.",
+        "module": "M1801"
+      },
+      {
+        "_id": "L5203",
+        "name": "Major Figures in Islamic Mysticism",
+        "description": "Examining influential figures in Islamic esotericism, including Ibn Arabi, Al-Ghazali, and Rumi.",
+        "module": "M1801"
+      }
+    ]
+  },
+  {
+    "_id": "M1802",
+    "name": "Practices of Islamic Esotericism",
+    "description": "A study of the various spiritual practices associated with Islamic esotericism and their significance.",
+    "course": "ISL403",
+    "lessons": [
+      {
+        "_id": "L5301",
+        "name": "Meditation and Contemplation (Tafakkur)",
+        "description": "Exploring meditation and contemplative practices as tools for spiritual growth in Sufism.",
+        "module": "M1802"
+      },
+      {
+        "_id": "L5302",
+        "name": "The Role of Dhikr (Remembrance)",
+        "description": "Understanding the significance of dhikr in Islamic esotericism and its impact on the heart and mind.",
+        "module": "M1802"
+      },
+      {
+        "_id": "L5303",
+        "name": "Initiation and Spiritual Guidance",
+        "description": "Examining the processes of initiation and the role of spiritual guides (shaykhs) in esoteric traditions.",
+        "module": "M1802"
+      }
+    ]
+  },
+  {
+    "_id": "M1803",
+    "name": "Theological and Philosophical Dimensions",
+    "description": "Analyzing the theological and philosophical implications of Islamic esotericism.",
+    "course": "ISL403",
+    "lessons": [
+      {
+        "_id": "L5401",
+        "name": "Unity of Being (Wahdat al-Wujud)",
+        "description": "Exploring the concept of unity of being and its significance in the writings of Ibn Arabi.",
+        "module": "M1803"
+      },
+      {
+        "_id": "L5402",
+        "name": "Love and Divine Beauty",
+        "description": "Understanding the centrality of love in Sufi thought and its relationship to the divine.",
+        "module": "M1803"
+      },
+      {
+        "_id": "L5403",
+        "name": "Esotericism and Ethics",
+        "description": "Examining how esoteric teachings influence ethical behavior and spiritual conduct in Islam.",
+        "module": "M1803"
+      }
+    ]
+  },
+  {
+    "_id": "M1901",
+    "name": "Foundations of Ancient Chinese Environmental Philosophy",
+    "description": "An overview of the key principles and philosophies that guided environmental management in ancient China.",
+    "course": "ENV101",
+    "lessons": [
+      {
+        "_id": "L5501",
+        "name": "Confucianism and Nature",
+        "description": "Exploring the relationship between Confucian ethics and environmental stewardship in ancient Chinese thought.",
+        "module": "M1901"
+      },
+      {
+        "_id": "L5502",
+        "name": "Daoism and Harmony with Nature",
+        "description": "Understanding Daoist principles of harmony and balance in relation to environmental practices.",
+        "module": "M1901"
+      },
+      {
+        "_id": "L5503",
+        "name": "Traditional Chinese Medicine and Environmental Interaction",
+        "description": "Examining the ecological knowledge embedded in traditional Chinese medicine and its environmental implications.",
+        "module": "M1901"
+      }
+    ]
+  },
+  {
+    "_id": "M1902",
+    "name": "Ancient Practices of Environmental Management",
+    "description": "A study of practical techniques and methods used in ancient China for sustainable environmental management.",
+    "course": "ENV101",
+    "lessons": [
+      {
+        "_id": "L5601",
+        "name": "Agricultural Practices and Sustainability",
+        "description": "Exploring ancient Chinese agricultural techniques that promoted sustainability and biodiversity.",
+        "module": "M1902"
+      },
+      {
+        "_id": "L5602",
+        "name": "Water Management Systems",
+        "description": "Understanding the development of ancient Chinese water management systems, including irrigation and flood control.",
+        "module": "M1902"
+      },
+      {
+        "_id": "L5603",
+        "name": "Forestry and Conservation Strategies",
+        "description": "Examining ancient practices related to forestry management and conservation efforts in China.",
+        "module": "M1902"
+      }
+    ]
+  },
+  {
+    "_id": "M1903",
+    "name": "Influence of Ancient Environmental Management on Modern Practices",
+    "description": "Analyzing the impact of ancient Chinese environmental management philosophies and practices on contemporary environmental issues.",
+    "course": "ENV101",
+    "lessons": [
+      {
+        "_id": "L5701",
+        "name": "Lessons from Ancient Practices",
+        "description": "Understanding how ancient techniques can inform modern environmental management strategies.",
+        "module": "M1903"
+      },
+      {
+        "_id": "L5702",
+        "name": "Integration of Traditional Knowledge",
+        "description": "Examining the role of traditional ecological knowledge in current environmental policies in China.",
+        "module": "M1903"
+      },
+      {
+        "_id": "L5703",
+        "name": "Case Studies of Ancient Practices Today",
+        "description": "Analyzing contemporary case studies where ancient practices have been successfully integrated into modern environmental management.",
+        "module": "M1903"
+      }
+    ]
+  },
+  {
+    "_id": "M2001",
+    "name": "Introduction to Chinese Mythology",
+    "description": "An overview of key myths and legends in Chinese mythology and their cultural significance.",
+    "course": "MGT201",
+    "lessons": [
+      {
+        "_id": "L5801",
+        "name": "Major Deities and Mythical Figures",
+        "description": "Exploring prominent deities and legendary heroes in Chinese mythology, such as the Jade Emperor and the Eight Immortals.",
+        "module": "M2001"
+      },
+      {
+        "_id": "L5802",
+        "name": "Creation Myths and Cosmic Order",
+        "description": "Understanding various creation myths and their reflections on the order of the universe in Chinese thought.",
+        "module": "M2001"
+      },
+      {
+        "_id": "L5803",
+        "name": "Lessons from Myths: Morality and Virtue",
+        "description": "Examining how myths convey moral lessons and virtues important in Chinese culture.",
+        "module": "M2001"
+      }
+    ]
+  },
+  {
+    "_id": "M2002",
+    "name": "Leadership Archetypes in Chinese Myths",
+    "description": "A study of leadership qualities and archetypes represented in Chinese mythology.",
+    "course": "MGT201",
+    "lessons": [
+      {
+        "_id": "L5901",
+        "name": "The Wise Leader: Confucius and Beyond",
+        "description": "Exploring the archetype of the wise leader as depicted in mythology and its implications for modern leadership.",
+        "module": "M2002"
+      },
+      {
+        "_id": "L5902",
+        "name": "The Hero’s Journey: Perseverance and Resilience",
+        "description": "Understanding the hero's journey as a metaphor for leadership challenges and resilience in adversity.",
+        "module": "M2002"
+      },
+      {
+        "_id": "L5903",
+        "name": "Collective Leadership: The Role of the Community",
+        "description": "Examining the concept of collective leadership illustrated in myths and its relevance to contemporary organizational dynamics.",
+        "module": "M2002"
+      }
+    ]
+  },
+  {
+    "_id": "M2003",
+    "name": "Applying Mythological Wisdom to Modern Leadership",
+    "description": "Analyzing how insights from Chinese mythology can inform and enhance modern leadership practices.",
+    "course": "MGT201",
+    "lessons": [
+      {
+        "_id": "L6001",
+        "name": "Ethics and Leadership in Chinese Culture",
+        "description": "Exploring ethical principles derived from mythology that can guide contemporary leaders.",
+        "module": "M2003"
+      },
+      {
+        "_id": "L6002",
+        "name": "Strategic Decision-Making: Lessons from Myths",
+        "description": "Understanding how mythological stories provide insights into strategic thinking and decision-making.",
+        "module": "M2003"
+      },
+      {
+        "_id": "L6003",
+        "name": "Inspiration and Motivation through Mythology",
+        "description": "Examining how mythological narratives can inspire and motivate teams in a leadership context.",
+        "module": "M2003"
+      }
+    ]
+  },
+  {
+    "_id": "M2101",
+    "name": "Introduction to Hydraulic Engineering",
+    "description": "An overview of hydraulic engineering principles and their applications in ancient civilizations.",
+    "course": "ENG303",
+    "lessons": [
+      {
+        "_id": "L6101",
+        "name": "Fundamentals of Fluid Mechanics",
+        "description": "Understanding the basic principles of fluid mechanics relevant to hydraulic engineering.",
+        "module": "M2101"
+      },
+      {
+        "_id": "L6102",
+        "name": "Historical Overview of Hydraulic Engineering",
+        "description": "Examining the development of hydraulic engineering from ancient times to modern practices.",
+        "module": "M2101"
+      },
+      {
+        "_id": "L6103",
+        "name": "Materials and Techniques Used",
+        "description": "Exploring the materials and construction techniques utilized in ancient hydraulic systems.",
+        "module": "M2101"
+      }
+    ]
+  },
+  {
+    "_id": "M2102",
+    "name": "Hydraulic Systems in Ancient Civilizations",
+    "description": "A study of various hydraulic systems and their significance in ancient cultures.",
+    "course": "ENG303",
+    "lessons": [
+      {
+        "_id": "L6201",
+        "name": "Aqueducts of Ancient Rome",
+        "description": "Analyzing the design and engineering of Roman aqueducts and their impact on urban development.",
+        "module": "M2102"
+      },
+      {
+        "_id": "L6202",
+        "name": "Irrigation Systems in Ancient Mesopotamia",
+        "description": "Understanding the irrigation practices of Mesopotamian civilizations and their role in agriculture.",
+        "module": "M2102"
+      },
+      {
+        "_id": "L6203",
+        "name": "Water Management in Ancient China",
+        "description": "Exploring ancient Chinese water management techniques, including canals and levees.",
+        "module": "M2102"
+      }
+    ]
+  },
+  {
+    "_id": "M2103",
+    "name": "Legacy of Ancient Hydraulic Engineering",
+    "description": "Examining the influence of ancient hydraulic engineering on modern practices and sustainability.",
+    "course": "ENG303",
+    "lessons": [
+      {
+        "_id": "L6301",
+        "name": "Lessons from Ancient Practices",
+        "description": "Understanding how ancient hydraulic engineering can inform contemporary water management strategies.",
+        "module": "M2103"
+      },
+      {
+        "_id": "L6302",
+        "name": "Sustainability in Hydraulic Engineering",
+        "description": "Examining the principles of sustainability in ancient hydraulic systems and their relevance today.",
+        "module": "M2103"
+      },
+      {
+        "_id": "L6303",
+        "name": "Case Studies of Modern Applications",
+        "description": "Analyzing case studies where ancient hydraulic engineering principles have been successfully applied in modern projects.",
+        "module": "M2103"
+      }
+    ]
+  }
+]

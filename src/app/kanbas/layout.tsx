@@ -4,6 +4,7 @@ import "./styles.css";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import React from "react";
 import { AiOutlineDashboard } from "react-icons/ai";
 import { FaInbox, FaRegCircleUser } from "react-icons/fa6";
 import { IoCalendarSharp, IoSettingsOutline } from "react-icons/io5";
@@ -18,6 +19,13 @@ export default function KanbasLayout({
   const isActive = (href: string) => {
     return pathname.includes(href);
   };
+
+  const links = [
+    { label: "Dashboard", href: "/kanbas/dashboard", icon: AiOutlineDashboard },
+    { label: "Courses", href: "/kanbas/courses", icon: LiaBookSolid },
+    { label: "Calendar", href: "/kanbas/calendar", icon: IoCalendarSharp },
+    { label: "Inbox", href: "/kanbas/inbox", icon: FaInbox },
+  ];
 
   return (
     <div id="wd-kanbas">
@@ -57,84 +65,27 @@ export default function KanbasLayout({
           <br />
           Account
         </Link>
-        <br />
-        <Link
-          href="/kanbas/dashboard"
-          id="wd-dashboard-link"
-          className={`${
-            isActive("/kanbas/dashboard")
-              ? "bg-white text-danger"
-              : "bg-black text-white"
-          } list-group-item border-0 text-center`}
-        >
-          <AiOutlineDashboard
+        {links.map((link) => (
+          <Link
+            key={link.href}
+            href={link.href}
             className={`${
-              isActive("/kanbas/dashboard") ? "text-danger" : "text-white"
-            } fs-1 text`}
-          />
-          <br />
-          Dashboard
-        </Link>
-        <br />
-        <Link
-          href="/kanbas/courses"
-          id="wd-course-link"
-          className={`${
-            isActive("/kanbas/courses")
-              ? "bg-white text-danger"
-              : "bg-black text-white"
-          } list-group-item border-0 text-center`}
-        >
-          <LiaBookSolid
-            className={`${
-              isActive("/kanbas/courses") ? "text-danger" : "text-white"
-            } fs-1 text`}
-          />
-          <br />
-          Courses
-        </Link>
-        <br />
-        <Link
-          href="/kanbas/calendar"
-          id="wd-calendar-link"
-          className={`${
-            isActive("/kanbas/calendar")
-              ? "bg-white text-danger"
-              : "bg-black text-white"
-          } list-group-item border-0 text-center`}
-        >
-          <IoCalendarSharp
-            className={`${
-              isActive("/kanbas/calendar") ? "text-danger" : "text-white"
-            } fs-1 text`}
-          />
-          Calendar
-        </Link>
-        <br />
-        <Link
-          href="/kanbas/inbox"
-          id="wd-inbox-link"
-          className={`${
-            isActive("/kanbas/inbox")
-              ? "bg-white text-danger"
-              : "bg-black text-white"
-          } list-group-item border-0 text-center`}
-        >
-          <FaInbox
-            className={`${
-              isActive("/kanbas/inbox") ? "text-danger" : "text-white"
-            } fs-1 text`}
-          />
-          <br />
-          Inbox
-        </Link>
-        <br />
+              isActive(link.href)
+                ? "bg-white text-danger"
+                : "bg-black text-white"
+            } list-group-item border-0 text-center`}
+          >
+            {React.createElement(link.icon, { className: "fs-1 text-danger" })}
+            <br />
+            {link.label}
+          </Link>
+        ))}
         <Link
           href="/labs"
           id="wd-labs-link"
           className="list-group-item border-0 text-center bg-black text-white"
         >
-          <IoSettingsOutline className="fs-1 text text-white" />
+          <IoSettingsOutline className="fs-1 text-danger" />
           <br />
           Labs
         </Link>
