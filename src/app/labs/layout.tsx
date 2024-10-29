@@ -8,37 +8,22 @@ export default function LabsLayout({
   children: React.ReactNode;
 }>) {
   const pathname = usePathname();
+  const labs = ["lab1", "lab2", "lab3", "lab4"];
   return (
     <div id="wd-labs">
       <h1>Labs</h1>
       <ul className="nav nav-pills">
-        <li className="nav-item">
-          <a
-            id="wd-a1"
-            href="/labs/lab1"
-            className={`nav-link ${pathname.includes("lab1") ? "active" : ""}`}
-          >
-            Lab 1
-          </a>
-        </li>
-        <li className="nav-item">
-          <a
-            id="wd-a2"
-            href="/labs/lab2"
-            className={`nav-link ${pathname.includes("lab2") ? "active" : ""}`}
-          >
-            Lab 2
-          </a>
-        </li>
-        <li className="nav-item">
-          <a
-            id="wd-a3"
-            href="/labs/lab3"
-            className={`nav-link ${pathname.includes("lab3") ? "active" : ""}`}
-          >
-            Lab 3
-          </a>
-        </li>
+        {labs.map((lab) => (
+          <li className="nav-item" key={lab}>
+            <a
+              id={`wd-${lab}`}
+              href={`/labs/${lab}`}
+              className={`nav-link ${pathname.includes(lab) ? "active" : ""}`}
+            >
+              {lab.charAt(0).toUpperCase() + lab.slice(1)}
+            </a>
+          </li>
+        ))}
         <li className="nav-item">
           <a id="wd-k" href="/kanbas" className="nav-link">
             Kanbas

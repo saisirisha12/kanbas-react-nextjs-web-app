@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 export default function Home() {
+  const labs = ["lab1", "lab2", "lab3", "lab4"];
   return (
     <div>
       <h1>Sai Vihar Reddy Gunamgari</h1>
@@ -9,15 +10,13 @@ export default function Home() {
         <li>
           <Link href="/labs">Labs</Link>
           <ul>
-            <li>
-              <Link href="/labs/lab1">Lab 1</Link>
-            </li>
-            <li>
-              <Link href="/labs/lab2">Lab 2</Link>
-            </li>
-            <li>
-              <Link href="/labs/lab3">Lab 3</Link>
-            </li>
+            {labs.map((lab) => (
+              <li key={lab}>
+                <Link href={`/labs/${lab}`}>
+                  {lab.charAt(0).toUpperCase() + lab.slice(1)}
+                </Link>
+              </li>
+            ))}
           </ul>
         </li>
         <li>
