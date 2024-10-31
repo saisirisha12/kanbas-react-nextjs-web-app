@@ -16,6 +16,7 @@ export default function Profile() {
   }
 
   const logout = () => {
+    dispatch(setCurrentUser(null));
     push("/kanbas/account/login");
   };
 

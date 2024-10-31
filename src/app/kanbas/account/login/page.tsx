@@ -72,7 +72,11 @@ export default function Login() {
         <a href="">Forgot username/password?</a>
       </div>
       <div>
-        <Link id="wd-signup-link" href="/kanbas/account/signup">
+        <Link
+          id="wd-signup-link"
+          href="/kanbas/account/signup"
+          prefetch={false}
+        >
           First time user?
         </Link>
       </div>

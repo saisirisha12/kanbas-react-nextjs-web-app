@@ -30,6 +30,7 @@ export default function ProtectedRoute({
         className={`${
           isActive(link.href) ? "bg-white text-danger" : "bg-black text-white"
         } list-group-item border-0 text-center`}
+        prefetch={false}
       >
         {createElement(link.icon, { className: "fs-1 text-danger" })}
         <br />

@@ -220,12 +220,14 @@ export default function AssignmentEditor() {
           <Link
             className="btn btn-secondary me-1"
             href={`/kanbas/courses/${assignment?.course}/assignments`}
+            prefetch={false}
           >
             Cancel
           </Link>
           <Link
             className="btn btn-danger"
             href={`/kanbas/courses/${assignment?.course}/assignments`}
+            prefetch={false}
           >
             Save
           </Link>

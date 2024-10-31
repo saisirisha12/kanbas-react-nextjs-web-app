@@ -45,6 +45,7 @@ export default function AccountLayout({
                 className={`${
                   pathname.includes(link.href) ? "active" : "text-danger"
                 } list-group-item border border-0`}
+                prefetch={false}
               >
                 {link.label}
               </Link>
