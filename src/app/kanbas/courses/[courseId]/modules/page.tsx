@@ -1,14 +1,19 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
+
 import { BsGripVertical } from "react-icons/bs";
 import ModulesControls from "./controls";
 import LessonControlButtons from "./lesson-control-buttons";
 import ModuleControlButtons from "./module-control-buttons";
 import { useParams } from "next/navigation";
-import * as db from "../../../database";
+import { useDispatch, useSelector } from "react-redux";
+import { updateModule } from "@/app/kanbas/store/reducers/modulesReducer";
 
 export default function Modules() {
   const { courseId } = useParams();
-  const modules = db.modules;
+  const { currentUser } = useSelector((state: any) => state.accountReducer);
+  const { modules } = useSelector((state: any) => state.modulesReducer);
+  const dispatch = useDispatch();
 
   return (
     <div>
@@ -19,26 +24,46 @@ export default function Modules() {
       <br />
       <ul id="wd-modules" className="list-group rounded-0">
         {modules
-          .filter((module) => module.course === courseId)
-          .map((module) => (
+          .filter((module: any) => module.course === courseId)
+          .map((module: any) => (
             <li
               key={module._id}
               className="wd-module list-group-item p-0 mb-5 fs-5 border-gray"
             >
               <div className="wd-title p-3 ps-2 bg-secondary">
                 <BsGripVertical className="me-2 fs-3" />
-                {module.name}
-                <ModuleControlButtons />
+                {!module.editing && module.name}
+                {currentUser?.role === "FACULTY" && module.editing && (
+                  <input
+                    type="text"
+                    className="form-control w-50 d-inline-block"
+                    defaultValue={module.name}
+                    onChange={(e) =>
+                      dispatch(
+                        updateModule({ ...module, name: e.target.value })
+                      )
+                    }
+                    onKeyDown={(e) =>
+                      e.key === "Enter" &&
+                      dispatch(updateModule({ ...module, editing: false }))
+                    }
+                  />
+                )}
+                {currentUser?.role === "FACULTY" && (
+                  <ModuleControlButtons moduleId={module._id} />
+                )}
               </div>
               <ul className="wd-lessons list-group rounded-0">
-                {module.lessons.map((lesson) => (
+                {module.lessons.map((lesson: any) => (
                   <li
                     key={lesson._id}
                     className="wd-lesson list-group-item p-3 ps-1"
                   >
                     <BsGripVertical className="me-2 fs-3" />
                     {lesson.name}
-                    <LessonControlButtons />
+                    {currentUser?.role === "FACULTY" && (
+                      <LessonControlButtons />
+                    )}
                   </li>
                 ))}
               </ul>

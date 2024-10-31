@@ -1,9 +1,19 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { useRouter } from "next/navigation";
+import { useDispatch, useSelector } from "react-redux";
+import { setCurrentUser } from "../../store/reducers/accountReducer";
 
 export default function Profile() {
   const { push } = useRouter();
+  const { currentUser } = useSelector((state: any) => state.accountReducer);
+  const dispatch = useDispatch();
+
+  if (!currentUser) {
+    push("/kanbas/account/login");
+    return;
+  }
 
   const logout = () => {
     push("/kanbas/account/login");
@@ -19,7 +29,12 @@ export default function Profile() {
         <input
           id="wd-username"
           className="mb-2 form-control"
-          defaultValue="alice"
+          defaultValue={currentUser.username}
+          onChange={(e) =>
+            dispatch(
+              setCurrentUser({ ...currentUser, username: e.target.value })
+            )
+          }
         />
         <label className="mb-1 form-label" htmlFor="wd-password">
           Password:
@@ -27,8 +42,13 @@ export default function Profile() {
         <input
           id="wd-password"
           className="mb-2 form-control"
-          defaultValue="password"
           type="password"
+          defaultValue={currentUser.password}
+          onChange={(e) =>
+            dispatch(
+              setCurrentUser({ ...currentUser, password: e.target.value })
+            )
+          }
         />
         <label className="mb-1 form-label" htmlFor="wd-firstname">
           First name:
@@ -36,7 +56,12 @@ export default function Profile() {
         <input
           id="wd-firstname"
           className="mb-2 form-control"
-          defaultValue="Alice"
+          defaultValue={currentUser.firstName}
+          onChange={(e) =>
+            dispatch(
+              setCurrentUser({ ...currentUser, firstName: e.target.value })
+            )
+          }
         />
         <label className="mb-1 form-label" htmlFor="wd-lastname">
           Last name:
@@ -44,7 +69,12 @@ export default function Profile() {
         <input
           id="wd-lastname"
           className="mb-2 form-control"
-          defaultValue="Wonderland"
+          defaultValue={currentUser.lastName}
+          onChange={(e) =>
+            dispatch(
+              setCurrentUser({ ...currentUser, lastName: e.target.value })
+            )
+          }
         />
         <label className="mb-1 form-label" htmlFor="wd-dob">
           Date of birth:
@@ -52,8 +82,11 @@ export default function Profile() {
         <input
           id="wd-dob"
           className="mb-2 form-control"
-          defaultValue="2000-01-01"
           type="date"
+          defaultValue={currentUser.dob}
+          onChange={(e) =>
+            dispatch(setCurrentUser({ ...currentUser, dob: e.target.value }))
+          }
         />
         <label className="mb-1 form-label" htmlFor="wd-email">
           Email id:
@@ -61,17 +94,26 @@ export default function Profile() {
         <input
           id="wd-email"
           className="mb-2 form-control"
-          defaultValue="alice@wonderland"
           type="email"
+          defaultValue={currentUser.email}
+          onChange={(e) =>
+            dispatch(setCurrentUser({ ...currentUser, email: e.target.value }))
+          }
         />
         <label className="mb-1 form-label" htmlFor="wd-role">
           Role:
         </label>
-        <select id="wd-role" className="mb-2 form-select" defaultValue="user">
-          <option value="user">User</option>
-          <option value="admin">Admin</option>
-          <option value="faculty">Faculty</option>
-          <option value="student">Student</option>
+        <select
+          id="wd-role"
+          className="mb-2 form-select"
+          defaultValue={currentUser?.role}
+          onChange={(e) =>
+            dispatch(setCurrentUser({ ...currentUser, role: e.target.value }))
+          }
+        >
+          <option value="STUDENT">Student</option>
+          <option value="FACULTY">Faculty</option>
+          <option value="TA">TA</option>
         </select>
         <button
           id="wd-logout-btn"

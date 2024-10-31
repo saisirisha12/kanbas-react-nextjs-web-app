@@ -1,3 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+"use client";
+
+import { useSelector } from "react-redux";
 import Add from "./Add";
 import AddingAndRemovingToFromArrays from "./AddingAndRemovingToFromArrays";
 import ArrayIndexAndLength from "./ArrayIndexAndLength";
@@ -31,10 +35,20 @@ import VariableTypes from "./VariableTypes";
 import VariablesAndConstants from "./VarsAndConsts";
 
 export default function Lab3() {
+  const { todos } = useSelector((state: any) => state.todosReducer);
+
   console.log("Hello World!");
   return (
     <div id="wd-lab3">
       <h2>JavaScript</h2>
+      <ul className="list-group">
+        {todos.map((todo: any) => (
+          <li key={todo.id} className="list-group-item">
+            {todo.title}
+          </li>
+        ))}
+      </ul>
+      <hr />
       <VariablesAndConstants />
       <VariableTypes />
       <BooleanVariables />
