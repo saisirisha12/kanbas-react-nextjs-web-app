@@ -11,6 +11,7 @@ import {
 } from "@/app/kanbas/store/reducers/assignmentsReducer";
 
 export default function AssignmentEditor() {
+  const { currentUser } = useSelector((state: any) => state.accountReducer);
   const { courseId, assignmentId } = useParams();
   const { push } = useRouter();
   const dispatch = useDispatch();
@@ -43,6 +44,8 @@ export default function AssignmentEditor() {
     push(`/kanbas/courses/${courseId}/assignments`);
   };
 
+  const isDisabled = currentUser?.role !== "FACULTY";
+
   return (
     <div id="wd-assignments-editor">
       <form>
@@ -58,6 +61,7 @@ export default function AssignmentEditor() {
             onChange={(e) =>
               setNewAssignment({ ...newAssignment, title: e.target.value })
             }
+            disabled={isDisabled}
           />
         </div>
         <div className="mb-3">
@@ -72,6 +76,7 @@ export default function AssignmentEditor() {
                 description: e.target.value,
               })
             }
+            disabled={isDisabled}
           ></textarea>
         </div>
         <div className="mb-3 row">
@@ -89,6 +94,7 @@ export default function AssignmentEditor() {
                   points: parseInt(e.target.value),
                 })
               }
+              disabled={isDisabled}
             />
           </div>
         </div>
@@ -101,6 +107,7 @@ export default function AssignmentEditor() {
               id="wd-group"
               className="form-select"
               defaultValue="assignments"
+              disabled={isDisabled}
             >
               <option value="assignments">ASSIGNMENTS</option>
               <option value="option">OPTION</option>
@@ -119,6 +126,7 @@ export default function AssignmentEditor() {
               id="wd-display-grade-as"
               className="form-select"
               defaultValue="percentage"
+              disabled={isDisabled}
             >
               <option value="percentage">Percentage</option>
               <option value="option">Option</option>
@@ -138,6 +146,7 @@ export default function AssignmentEditor() {
                 id="wd-submission-type"
                 className="form-select"
                 defaultValue="online"
+                disabled={isDisabled}
               >
                 <option value="online">Online</option>
                 <option value="option">Option</option>
@@ -153,6 +162,7 @@ export default function AssignmentEditor() {
                     type="checkbox"
                     id="wd-text-entry"
                     name="check-entry"
+                    disabled={isDisabled}
                   />
                   <label className="form-check-label" htmlFor="wd-text-entry">
                     Text Entry
@@ -164,6 +174,7 @@ export default function AssignmentEditor() {
                     type="checkbox"
                     id="wd-website-url"
                     name="check-entry"
+                    disabled={isDisabled}
                   />
                   <label className="form-check-label" htmlFor="wd-website-url">
                     Website URL
@@ -175,6 +186,7 @@ export default function AssignmentEditor() {
                     type="checkbox"
                     id="wd-media-recordings"
                     name="check-entry"
+                    disabled={isDisabled}
                   />
                   <label
                     className="form-check-label"
@@ -189,6 +201,7 @@ export default function AssignmentEditor() {
                     type="checkbox"
                     id="wd-student-annotation"
                     name="check-entry"
+                    disabled={isDisabled}
                   />
                   <label
                     className="form-check-label"
@@ -203,6 +216,7 @@ export default function AssignmentEditor() {
                     type="checkbox"
                     id="wd-file-upload"
                     name="check-entry"
+                    disabled={isDisabled}
                   />
                   <label className="form-check-label" htmlFor="wd-file-upload">
                     File Uploads
@@ -223,6 +237,7 @@ export default function AssignmentEditor() {
                 id="wd-assign-to"
                 className="form-control"
                 defaultValue="Everyone"
+                disabled={isDisabled}
               />
               <label htmlFor="wd-due-date" className="form-label fw-bold mt-3">
                 Due
@@ -238,6 +253,7 @@ export default function AssignmentEditor() {
                     dueDate: e.target.value,
                   })
                 }
+                disabled={isDisabled}
               />
               <div className="d-flex mt-3">
                 <div className="w-50">
@@ -258,6 +274,7 @@ export default function AssignmentEditor() {
                         availableFrom: e.target.value,
                       })
                     }
+                    disabled={isDisabled}
                   />
                 </div>
                 <div className="w-50">
@@ -275,6 +292,7 @@ export default function AssignmentEditor() {
                         availableUntil: e.target.value,
                       })
                     }
+                    disabled={isDisabled}
                   />
                 </div>
               </div>
@@ -286,6 +304,7 @@ export default function AssignmentEditor() {
           <Link
             className="btn btn-secondary me-1"
             href={`/kanbas/courses/${courseId}/assignments`}
+            aria-disabled={isDisabled}
           >
             Cancel
           </Link>
@@ -295,6 +314,7 @@ export default function AssignmentEditor() {
               e.preventDefault();
               saveChanges();
             }}
+            disabled={isDisabled}
           >
             Save
           </button>
