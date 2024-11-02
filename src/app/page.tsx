@@ -20,9 +20,7 @@ export default function Home() {
           </ul>
         </li>
         <li>
-          <Link href="/kanbas" prefetch={false}>
-            Kanbas
-          </Link>
+          <Link href="/kanbas">Kanbas</Link>
         </li>
         <li>
           <Link

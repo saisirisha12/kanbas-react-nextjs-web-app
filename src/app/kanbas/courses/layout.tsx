@@ -53,7 +53,6 @@ export default function CoursesLayout({
                 className={`${
                   pathname.includes(link) ? "active" : "text-danger"
                 } list-group-item border border-0`}
-                prefetch={false}
               >
                 {titleCase(link)}
               </Link>

@@ -5,7 +5,6 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-// import * as db from "../../database";
 import { setCurrentUser } from "../../store/reducers/accountReducer";
 
 export default function Login() {
@@ -28,7 +27,6 @@ export default function Login() {
       return;
     }
     push("/kanbas/dashboard");
-    console.log("User logged in:", user);
     dispatch(setCurrentUser(user));
   };
 
@@ -72,11 +70,7 @@ export default function Login() {
         <a href="">Forgot username/password?</a>
       </div>
       <div>
-        <Link
-          id="wd-signup-link"
-          href="/kanbas/account/signup"
-          prefetch={false}
-        >
+        <Link id="wd-signup-link" href="/kanbas/account/signup">
           First time user?
         </Link>
       </div>

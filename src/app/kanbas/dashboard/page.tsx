@@ -119,7 +119,6 @@ export default function Dashboard() {
                 <Link
                   className="wd-dashboard-course-link text-decoration-none text-dark"
                   href={`/kanbas/courses/${course.number}/home`}
-                  prefetch={false}
                 >
                   <Image
                     src={`/images/${course.number}.jpg`}
