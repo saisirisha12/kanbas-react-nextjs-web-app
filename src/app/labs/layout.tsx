@@ -10,7 +10,7 @@ export default function LabsLayout({
   children: React.ReactNode;
 }>) {
   const pathname = usePathname();
-  const labs = ["lab1", "lab2", "lab3", "lab4"];
+  const labs = ["lab1", "lab2", "lab3", "lab4", "lab5"];
   return (
     <Provider store={store}>
       <div id="wd-labs">

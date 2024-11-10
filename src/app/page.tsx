@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 export default function Home() {
-  const labs = ["lab1", "lab2", "lab3", "lab4"];
+  const labs = ["lab1", "lab2", "lab3", "lab4", "lab5"];
   return (
     <div>
       <h1>Sai Vihar Reddy Gunamgari</h1>
