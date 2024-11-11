@@ -1,4 +1,4 @@
-const REMOTE_SERVER = process.env.REACT_APP_REMOTE_SERVER;
+const REMOTE_SERVER = process.env.NEXT_PUBLIC_REMOTE_SERVER;
 
 export default function EnvironmentVariables() {
   return (
