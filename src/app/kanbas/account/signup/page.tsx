@@ -3,7 +3,8 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addNewUser } from "../../store/reducers/accountReducer";
+import { setCurrentUser } from "../../store/reducers/accountReducer";
+import * as client from "../client";
 
 export default function SignUp() {
   const { push } = useRouter();
@@ -20,9 +21,10 @@ export default function SignUp() {
     }
   };
 
-  const signup = () => {
-    dispatch(addNewUser({ username, password }));
-    push("/kanbas/account/login");
+  const signup = async () => {
+    const currentUser = await client.signup({ username, password });
+    dispatch(setCurrentUser(currentUser));
+    push("/kanbas/account/profile");
   };
 
   return (

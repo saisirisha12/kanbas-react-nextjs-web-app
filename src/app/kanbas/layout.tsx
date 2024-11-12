@@ -13,6 +13,7 @@ import { LiaBookSolid } from "react-icons/lia";
 import { Provider } from "react-redux";
 import store from "./store";
 import ProtectedRoute from "./account/protectedRoute";
+import Session from "./account/session";
 
 export default function KanbasLayout({
   children,
@@ -62,67 +63,69 @@ export default function KanbasLayout({
 
   return (
     <Provider store={store}>
-      <div id="wd-kanbas">
-        <div
-          id="wd-kanbas-navigation"
-          style={{ width: 120 }}
-          className="list-group rounded-0 position-fixed bottom-0 top-0 d-none d-md-block bg-black z-2"
-        >
-          <a
-            href="https://www.northeastern.edu/"
-            id="wd-neu-link"
-            target="_blank"
-            className="list-group-item bg-black border-0 text-center"
+      <Session>
+        <div id="wd-kanbas">
+          <div
+            id="wd-kanbas-navigation"
+            style={{ width: 120 }}
+            className="list-group rounded-0 position-fixed bottom-0 top-0 d-none d-md-block bg-black z-2"
           >
-            <Image
-              src="/images/neu.jpg"
-              width="75"
-              height="75"
-              alt="Northeastern logo"
-            />
-          </a>
-          <br />
-          <Link
-            href="/kanbas/account"
-            id="wd-account-link"
-            className={`${
-              isActive("/kanbas/account")
-                ? "bg-white text-danger"
-                : "bg-black text-white"
-            } list-group-item border-0 text-center`}
-          >
-            <FaRegCircleUser
+            <a
+              href="https://www.northeastern.edu/"
+              id="wd-neu-link"
+              target="_blank"
+              className="list-group-item bg-black border-0 text-center"
+            >
+              <Image
+                src="/images/neu.jpg"
+                width="75"
+                height="75"
+                alt="Northeastern logo"
+              />
+            </a>
+            <br />
+            <Link
+              href="/kanbas/account"
+              id="wd-account-link"
               className={`${
-                isActive("/kanbas/account") ? "text-danger" : "text-white"
-              } fs-1 text`}
-            />
+                isActive("/kanbas/account")
+                  ? "bg-white text-danger"
+                  : "bg-black text-white"
+              } list-group-item border-0 text-center`}
+            >
+              <FaRegCircleUser
+                className={`${
+                  isActive("/kanbas/account") ? "text-danger" : "text-white"
+                } fs-1 text`}
+              />
+              <br />
+              Account
+            </Link>
+            {links.map((link) => {
+              if (link.protected) {
+                return (
+                  <ProtectedRoute key={link.href} link={link}>
+                    {renderLink(link)}
+                  </ProtectedRoute>
+                );
+              } else {
+                return renderLink(link);
+              }
+            })}
+            <Link
+              href="/labs"
+              id="wd-labs-link"
+              className="list-group-item border-0 text-center bg-black text-white"
+            >
+              <IoSettingsOutline className="fs-1 text-danger" />
+              <br />
+              Labs
+            </Link>
             <br />
-            Account
-          </Link>
-          {links.map((link) => {
-            if (link.protected) {
-              return (
-                <ProtectedRoute key={link.href} link={link}>
-                  {renderLink(link)}
-                </ProtectedRoute>
-              );
-            } else {
-              return renderLink(link);
-            }
-          })}
-          <Link
-            href="/labs"
-            id="wd-labs-link"
-            className="list-group-item border-0 text-center bg-black text-white"
-          >
-            <IoSettingsOutline className="fs-1 text-danger" />
-            <br />
-            Labs
-          </Link>
-          <br />
+          </div>
+          <div className="wd-main-content-offset p-3">{children}</div>
         </div>
-        <div className="wd-main-content-offset p-3">{children}</div>
-      </div>
+      </Session>
     </Provider>
   );
 }

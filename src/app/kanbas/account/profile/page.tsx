@@ -4,20 +4,38 @@
 import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrentUser } from "../../store/reducers/accountReducer";
+import * as client from "../client";
+import { useEffect, useState } from "react";
 
 export default function Profile() {
   const { push } = useRouter();
   const { currentUser } = useSelector((state: any) => state.accountReducer);
   const dispatch = useDispatch();
+  const [profile, setProfile] = useState(currentUser);
+  const [logoutRequested, setLogoutRequested] = useState(false);
 
-  if (!currentUser) {
-    push("/kanbas/account/login");
-    return;
-  }
+  useEffect(() => {
+    if (!currentUser) {
+      push("/kanbas/account/login");
+    }
+  }, [currentUser, push]);
 
-  const logout = () => {
+  useEffect(() => {
+    if (logoutRequested) {
+      push("/kanbas/account/login");
+    }
+  }, [logoutRequested, push]);
+
+  const updateProfile = async () => {
+    console.log("Updating profile...", profile);
+    const updatedProfile = await client.updateUser(profile);
+    dispatch(setCurrentUser(updatedProfile));
+  };
+
+  const logout = async () => {
+    await client.logout();
     dispatch(setCurrentUser(null));
-    push("/kanbas/account/login");
+    setLogoutRequested(true);
   };
 
   return (
@@ -30,12 +48,8 @@ export default function Profile() {
         <input
           id="wd-username"
           className="mb-2 form-control"
-          defaultValue={currentUser.username}
-          onChange={(e) =>
-            dispatch(
-              setCurrentUser({ ...currentUser, username: e.target.value })
-            )
-          }
+          defaultValue={profile.username}
+          onChange={(e) => setProfile({ ...profile, username: e.target.value })}
         />
         <label className="mb-1 form-label" htmlFor="wd-password">
           Password:
@@ -44,12 +58,8 @@ export default function Profile() {
           id="wd-password"
           className="mb-2 form-control"
           type="password"
-          defaultValue={currentUser.password}
-          onChange={(e) =>
-            dispatch(
-              setCurrentUser({ ...currentUser, password: e.target.value })
-            )
-          }
+          defaultValue={profile.password}
+          onChange={(e) => setProfile({ ...profile, password: e.target.value })}
         />
         <label className="mb-1 form-label" htmlFor="wd-firstname">
           First name:
@@ -57,11 +67,9 @@ export default function Profile() {
         <input
           id="wd-firstname"
           className="mb-2 form-control"
-          defaultValue={currentUser.firstName}
+          defaultValue={profile.firstName}
           onChange={(e) =>
-            dispatch(
-              setCurrentUser({ ...currentUser, firstName: e.target.value })
-            )
+            setProfile({ ...profile, firstName: e.target.value })
           }
         />
         <label className="mb-1 form-label" htmlFor="wd-lastname">
@@ -70,12 +78,8 @@ export default function Profile() {
         <input
           id="wd-lastname"
           className="mb-2 form-control"
-          defaultValue={currentUser.lastName}
-          onChange={(e) =>
-            dispatch(
-              setCurrentUser({ ...currentUser, lastName: e.target.value })
-            )
-          }
+          defaultValue={profile.lastName}
+          onChange={(e) => setProfile({ ...profile, lastName: e.target.value })}
         />
         <label className="mb-1 form-label" htmlFor="wd-dob">
           Date of birth:
@@ -84,10 +88,8 @@ export default function Profile() {
           id="wd-dob"
           className="mb-2 form-control"
           type="date"
-          defaultValue={currentUser.dob}
-          onChange={(e) =>
-            dispatch(setCurrentUser({ ...currentUser, dob: e.target.value }))
-          }
+          defaultValue={profile.dob}
+          onChange={(e) => setProfile({ ...profile, dob: e.target.value })}
         />
         <label className="mb-1 form-label" htmlFor="wd-email">
           Email id:
@@ -96,10 +98,8 @@ export default function Profile() {
           id="wd-email"
           className="mb-2 form-control"
           type="email"
-          defaultValue={currentUser.email}
-          onChange={(e) =>
-            dispatch(setCurrentUser({ ...currentUser, email: e.target.value }))
-          }
+          defaultValue={profile.email}
+          onChange={(e) => setProfile({ ...profile, email: e.target.value })}
         />
         <label className="mb-1 form-label" htmlFor="wd-role">
           Role:
@@ -107,15 +107,20 @@ export default function Profile() {
         <select
           id="wd-role"
           className="mb-2 form-select"
-          defaultValue={currentUser?.role}
-          onChange={(e) =>
-            dispatch(setCurrentUser({ ...currentUser, role: e.target.value }))
-          }
+          defaultValue={profile?.role}
+          onChange={(e) => setProfile({ ...profile, role: e.target.value })}
         >
           <option value="STUDENT">Student</option>
           <option value="FACULTY">Faculty</option>
           <option value="TA">TA</option>
         </select>
+        <button
+          className="btn btn-primary w-100 mt-2"
+          type="button"
+          onClick={updateProfile}
+        >
+          Update
+        </button>
         <button
           id="wd-logout-btn"
           className="btn btn-danger w-100 mt-2"

@@ -4,8 +4,9 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setCurrentUser } from "../../store/reducers/accountReducer";
+import * as client from "../client";
 
 export default function Login() {
   const { push } = useRouter();
@@ -13,21 +14,16 @@ export default function Login() {
     username: "",
     password: "",
   });
-  const { users } = useSelector((state: any) => state.accountReducer);
   const dispatch = useDispatch();
 
-  const login = () => {
-    const user = users.find(
-      (u: any) =>
-        u.username === credentials.username &&
-        u.password === credentials.password
-    );
-    if (!user) {
+  const login = async () => {
+    const user = await client.login(credentials);
+    if (!user || "message" in user) {
       alert("Invalid username or password, please try again.");
       return;
     }
-    push("/kanbas/dashboard");
     dispatch(setCurrentUser(user));
+    push("/kanbas/dashboard");
   };
 
   return (
