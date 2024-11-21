@@ -135,7 +135,7 @@ export default function Dashboard() {
                   {isEnrolled(course) && (
                     <Link
                       className="btn btn-primary"
-                      href={`/kanbas/courses/${course.number}/home`}
+                      href={`/kanbas/courses/${course._id}/home`}
                     >
                       Go
                     </Link>

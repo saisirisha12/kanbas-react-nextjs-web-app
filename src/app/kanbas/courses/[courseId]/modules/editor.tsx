@@ -3,13 +3,27 @@ import {
   addModule,
   setModule,
 } from "@/app/kanbas/store/reducers/modulesReducer";
+import { Module } from "@/app/kanbas/types";
 import { useParams } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
+import * as client from "../../client";
 
 export default function ModuleEditor({ dialogTitle }: { dialogTitle: string }) {
   const { courseId } = useParams();
-  const { module } = useSelector((state: any) => state.modulesReducer);
+  const { module }: { module: Module } = useSelector(
+    (state: any) => state.modulesReducer
+  );
   const dispatch = useDispatch();
+
+  const addNewModule = async () => {
+    try {
+      if (!courseId) return;
+      await client.createModuleForCourse(courseId as string, module);
+      dispatch(addModule(module));
+    } catch (error) {
+      alert("Unable to add module. Please try again.");
+    }
+  };
 
   return (
     <div
@@ -61,7 +75,7 @@ export default function ModuleEditor({ dialogTitle }: { dialogTitle: string }) {
               type="button"
               className="btn btn-danger"
               data-bs-dismiss="modal"
-              onClick={() => dispatch(addModule(module))}
+              onClick={addNewModule}
             >
               Add Module
             </button>

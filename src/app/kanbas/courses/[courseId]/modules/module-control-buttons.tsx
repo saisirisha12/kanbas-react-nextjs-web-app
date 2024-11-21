@@ -3,15 +3,14 @@ import GreenCheckmark from "./green-checkmark";
 import { BsPlus } from "react-icons/bs";
 import { FaPencil, FaTrash } from "react-icons/fa6";
 import { useDispatch } from "react-redux";
-import {
-  deleteModule,
-  editModule,
-} from "@/app/kanbas/store/reducers/modulesReducer";
+import { editModule } from "@/app/kanbas/store/reducers/modulesReducer";
 
 export default function ModuleControlButtons({
   moduleId,
+  deleteModule,
 }: {
   moduleId: string;
+  deleteModule: (moduleId: string) => void;
 }) {
   const dispatch = useDispatch();
 
@@ -23,7 +22,7 @@ export default function ModuleControlButtons({
       />
       <FaTrash
         className="text-danger me-2 mb-1"
-        onClick={() => dispatch(deleteModule(moduleId))}
+        onClick={() => deleteModule(moduleId)}
       />
       <GreenCheckmark />
       <BsPlus className="fs-2" />
