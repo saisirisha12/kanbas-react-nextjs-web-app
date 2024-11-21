@@ -1,9 +1,15 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { useState } from "react";
+import { createRef, useEffect, useState } from "react";
 import { createCourse } from "../account/client";
 import { useSelector } from "react-redux";
 import { Modal } from "bootstrap";
+import { updateCourse } from "../courses/client";
+
+export enum ModalType {
+  ADD = "ADD",
+  EDIT = "EDIT",
+}
 
 interface Course {
   _id?: string;
@@ -16,25 +22,43 @@ interface Course {
   credits: number;
 }
 
-interface AddCourseModalProps {
+interface CourseModalProps {
+  course?: Course;
   courses: Course[];
   setCourses: React.Dispatch<React.SetStateAction<any[]>>;
+  type: ModalType;
 }
 
-export default function AddCourseModal({
+export default function CourseModal({
+  course,
   courses,
   setCourses,
-}: AddCourseModalProps) {
+  type,
+}: CourseModalProps) {
   const { currentUser } = useSelector((state: any) => state.accountReducer);
   const [formValues, setFormValues] = useState<Course>({
-    number: "",
-    name: "",
-    description: "",
-    startDate: "",
-    endDate: "",
-    department: "",
-    credits: 0,
+    number: course?.number || "",
+    name: course?.name || "",
+    description: course?.description || "",
+    startDate: course?.startDate || "",
+    endDate: course?.endDate || "",
+    department: course?.department || "",
+    credits: course?.credits || 0,
   });
+  const modalRef = createRef<HTMLDivElement>();
+
+  useEffect(() => {
+    setFormValues({
+      _id: course?._id,
+      number: course?.number || "",
+      name: course?.name || "",
+      description: course?.description || "",
+      startDate: course?.startDate || "",
+      endDate: course?.endDate || "",
+      department: course?.department || "",
+      credits: course?.credits || 0,
+    });
+  }, [course]);
 
   const handleInputChange = (e: any) => {
     const { id, value } = e.target;
@@ -59,10 +83,19 @@ export default function AddCourseModal({
       return;
     }
 
-    console.log(formValues);
     try {
-      const newCourse = await createCourse(formValues, currentUser._id);
-      setCourses([...courses, newCourse]);
+      if (type === ModalType.ADD) {
+        const newCourse = await createCourse(formValues, currentUser._id);
+        setCourses([...courses, newCourse]);
+      } else if (type === ModalType.EDIT) {
+        const newCourse = await updateCourse({
+          ...formValues,
+          _id: course?._id,
+        });
+        setCourses(
+          courses.map((c) => (c._id === newCourse._id ? newCourse : c))
+        );
+      }
       setFormValues({
         number: "",
         name: "",
@@ -72,28 +105,33 @@ export default function AddCourseModal({
         department: "",
         credits: 0,
       });
-      const modal = document.getElementById("wd-add-course-dialog");
-      if (modal) {
-        const modalInstance = Modal.getInstance(modal);
+      if (modalRef.current) {
+        const modalInstance =
+          Modal.getInstance(modalRef.current) || new Modal(modalRef.current);
         modalInstance?.hide();
       }
     } catch (error) {
-      alert("Failed to create course. Please try again.");
+      alert(
+        `Unable to ${
+          type === ModalType.ADD ? "create" : "update"
+        } course. Please try again.`
+      );
     }
   };
 
   return (
     <div
-      id="wd-add-course-dialog"
+      id="wd-course-dialog"
       className="modal fade"
       data-bs-backdrop="static"
       data-bs-keyboard="false"
+      ref={modalRef}
     >
       <div className="modal-dialog">
         <div className="modal-content">
           <div className="modal-header">
             <h1 className="modal-title fs-5" id="staticBackdropLabel">
-              Add Course
+              {type === ModalType.ADD ? "Add Course" : "Edit Course"}
             </h1>
             <button
               type="button"
@@ -183,7 +221,7 @@ export default function AddCourseModal({
                 Close
               </button>
               <button className="btn btn-primary mt-2" type="submit">
-                Add Course
+                {type === ModalType.ADD ? "Add Course" : "Save"}
               </button>
             </div>
           </form>

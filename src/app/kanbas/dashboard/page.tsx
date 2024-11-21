@@ -13,8 +13,7 @@ import { deleteCourse, fetchAllCourses } from "../courses/client";
 import { findMyCourses } from "../account/client";
 import { FaPlus } from "react-icons/fa6";
 import { useRouter } from "next/navigation";
-import AddCourseModal from "./addCourseModal";
-import EditCourseModal from "./editCourseModal";
+import CourseModal, { ModalType } from "./courseModal";
 
 export default function Dashboard() {
   const router = useRouter();
@@ -63,6 +62,10 @@ export default function Dashboard() {
     );
   };
 
+  const handleAddCourse = () => {
+    setSelectedCourse(null);
+  };
+
   const handleEditCourse = (course: any) => {
     setSelectedCourse(course);
   };
@@ -96,7 +99,8 @@ export default function Dashboard() {
             id="wd-add-course-btn"
             className="btn btn-primary float-end"
             data-bs-toggle="modal"
-            data-bs-target="#wd-add-course-dialog"
+            data-bs-target="#wd-course-dialog"
+            onClick={handleAddCourse}
           >
             <FaPlus
               className="position-relative me-2"
@@ -152,7 +156,7 @@ export default function Dashboard() {
                     <button
                       id="wd-edit-course-btn"
                       data-bs-toggle="modal"
-                      data-bs-target="#wd-edit-course-dialog"
+                      data-bs-target="#wd-course-dialog"
                       className="btn btn-warning float-end me-2"
                       onClick={() => handleEditCourse(course)}
                     >
@@ -181,17 +185,12 @@ export default function Dashboard() {
           ))}
         </div>
       </div>
-      <AddCourseModal
+      <CourseModal
+        course={selectedCourse}
         courses={relevantCourses}
         setCourses={setRelevantCourses}
+        type={selectedCourse ? ModalType.EDIT : ModalType.ADD}
       />
-      {!!selectedCourse && (
-        <EditCourseModal
-          course={selectedCourse}
-          courses={relevantCourses}
-          setCourses={setRelevantCourses}
-        />
-      )}
     </div>
   );
 }
