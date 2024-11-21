@@ -5,38 +5,38 @@ import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrentUser } from "../../store/reducers/accountReducer";
 import * as client from "../client";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 export default function Profile() {
-  const { push } = useRouter();
+  const router = useRouter();
   const { currentUser } = useSelector((state: any) => state.accountReducer);
   const dispatch = useDispatch();
-  const [profile, setProfile] = useState(currentUser);
+  const [profile, setProfile] = useState(currentUser || {});
   const [logoutRequested, setLogoutRequested] = useState(false);
 
   useEffect(() => {
     if (!currentUser) {
-      push("/kanbas/account/login");
+      router.push("/kanbas/account/login");
     }
-  }, [currentUser, push]);
+  }, [currentUser, router]);
 
   useEffect(() => {
     if (logoutRequested) {
-      push("/kanbas/account/login");
+      router.push("/kanbas/account/login");
     }
-  }, [logoutRequested, push]);
+  }, [logoutRequested, router]);
 
-  const updateProfile = async () => {
+  const updateProfile = useCallback(async () => {
     console.log("Updating profile...", profile);
     const updatedProfile = await client.updateUser(profile);
     dispatch(setCurrentUser(updatedProfile));
-  };
+  }, [profile, dispatch]);
 
-  const logout = async () => {
+  const logout = useCallback(async () => {
     await client.logout();
     dispatch(setCurrentUser(null));
     setLogoutRequested(true);
-  };
+  }, [dispatch]);
 
   return (
     <div id="wd-profile-screen">
@@ -48,7 +48,7 @@ export default function Profile() {
         <input
           id="wd-username"
           className="mb-2 form-control"
-          defaultValue={profile.username}
+          value={profile?.username}
           onChange={(e) => setProfile({ ...profile, username: e.target.value })}
         />
         <label className="mb-1 form-label" htmlFor="wd-password">
@@ -58,7 +58,7 @@ export default function Profile() {
           id="wd-password"
           className="mb-2 form-control"
           type="password"
-          defaultValue={profile.password}
+          value={profile?.password}
           onChange={(e) => setProfile({ ...profile, password: e.target.value })}
         />
         <label className="mb-1 form-label" htmlFor="wd-firstname">
@@ -67,7 +67,7 @@ export default function Profile() {
         <input
           id="wd-firstname"
           className="mb-2 form-control"
-          defaultValue={profile.firstName}
+          value={profile?.firstName}
           onChange={(e) =>
             setProfile({ ...profile, firstName: e.target.value })
           }
@@ -78,7 +78,7 @@ export default function Profile() {
         <input
           id="wd-lastname"
           className="mb-2 form-control"
-          defaultValue={profile.lastName}
+          value={profile?.lastName}
           onChange={(e) => setProfile({ ...profile, lastName: e.target.value })}
         />
         <label className="mb-1 form-label" htmlFor="wd-dob">
@@ -88,7 +88,7 @@ export default function Profile() {
           id="wd-dob"
           className="mb-2 form-control"
           type="date"
-          defaultValue={profile.dob}
+          value={profile?.dob}
           onChange={(e) => setProfile({ ...profile, dob: e.target.value })}
         />
         <label className="mb-1 form-label" htmlFor="wd-email">
@@ -98,7 +98,7 @@ export default function Profile() {
           id="wd-email"
           className="mb-2 form-control"
           type="email"
-          defaultValue={profile.email}
+          value={profile?.email}
           onChange={(e) => setProfile({ ...profile, email: e.target.value })}
         />
         <label className="mb-1 form-label" htmlFor="wd-role">
@@ -107,7 +107,7 @@ export default function Profile() {
         <select
           id="wd-role"
           className="mb-2 form-select"
-          defaultValue={profile?.role}
+          value={profile?.role}
           onChange={(e) => setProfile({ ...profile, role: e.target.value })}
         >
           <option value="STUDENT">Student</option>

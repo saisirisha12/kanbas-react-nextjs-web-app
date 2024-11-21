@@ -4,40 +4,40 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  addCourse,
-  deleteCourse,
-  setCourse,
-  updateCourse,
-} from "../store/reducers/coursesReducer";
 import { useEffect, useState } from "react";
 import {
   addEnrollment,
   deleteEnrollment,
 } from "../store/reducers/enrollmentsReducer";
+import { deleteCourse, fetchAllCourses } from "../courses/client";
+import { findMyCourses } from "../account/client";
+import { FaPlus } from "react-icons/fa6";
+import { useRouter } from "next/navigation";
+import AddCourseModal from "./addCourseModal";
+import EditCourseModal from "./editCourseModal";
 
 export default function Dashboard() {
+  const router = useRouter();
   const { currentUser } = useSelector((state: any) => state.accountReducer);
-  const { courses, course } = useSelector((state: any) => state.coursesReducer);
   const dispatch = useDispatch();
   const { enrollments } = useSelector((state: any) => state.enrollmentsReducer);
   const [enrolled, setEnrolled] = useState(true);
-  const [relevantCourses, setRelevantCourses] = useState(courses);
+  const [relevantCourses, setRelevantCourses] = useState<any[]>([]);
+  const [selectedCourse, setSelectedCourse] = useState<any>(null);
+
+  useEffect(() => {
+    if (!currentUser) {
+      router.push("/kanbas/account/login");
+    }
+  }, [currentUser, router]);
 
   useEffect(() => {
     if (enrolled) {
-      const filteredCourses = courses.filter((course: any) =>
-        enrollments.some(
-          (enrollment: any) =>
-            enrollment.user === currentUser?._id &&
-            enrollment.course === course.number
-        )
-      );
-      setRelevantCourses(filteredCourses);
+      findMyCourses(currentUser?._id).then((data) => setRelevantCourses(data));
     } else {
-      setRelevantCourses(courses);
+      fetchAllCourses().then((data) => setRelevantCourses(data));
     }
-  }, [enrolled, courses, enrollments, currentUser]);
+  }, [enrolled, currentUser]);
 
   const isEnrolled = (c: any) => {
     return enrollments.some(
@@ -63,126 +63,22 @@ export default function Dashboard() {
     );
   };
 
+  const handleEditCourse = (course: any) => {
+    setSelectedCourse(course);
+  };
+
+  const removeCourse = async (courseId: string) => {
+    try {
+      await deleteCourse(courseId);
+      setRelevantCourses(relevantCourses.filter((c) => c._id !== courseId));
+    } catch (error) {
+      alert("Unable to delete course. Please try again later.");
+    }
+  };
+
   return (
     <div id="wd-dashboard">
       <h1 id="wd-dashboard-title">Dashboard</h1>
-      {currentUser?.role === "FACULTY" && (
-        <h5>
-          <hr />
-          New Course
-          <button
-            className="btn btn-primary float-end"
-            id="wd-add-new-course-click"
-            onClick={() => {
-              dispatch(addCourse());
-              enroll(course);
-              dispatch(
-                setCourse({
-                  _id: 0,
-                  number: "",
-                  name: "",
-                  startDate: "",
-                  endDate: "",
-                  department: "",
-                  credits: 0,
-                  description: "",
-                })
-              );
-            }}
-          >
-            Add
-          </button>
-          <button
-            className="btn btn-warning float-end me-2"
-            id="wd-update-course-click"
-            onClick={() => {
-              dispatch(updateCourse());
-              dispatch(
-                setCourse({
-                  _id: 0,
-                  number: "",
-                  name: "",
-                  startDate: "",
-                  endDate: "",
-                  department: "",
-                  credits: 0,
-                  description: "",
-                })
-              );
-            }}
-          >
-            Update
-          </button>
-        </h5>
-      )}
-      {currentUser?.role === "FACULTY" && (
-        <form>
-          <input
-            type="text"
-            value={course.number}
-            className="form-control mb-2"
-            placeholder="Course Number"
-            onChange={(e) =>
-              dispatch(setCourse({ ...course, number: e.target.value }))
-            }
-          />
-          <input
-            type="text"
-            value={course.name}
-            className="form-control mb-2"
-            placeholder="Course Name"
-            onChange={(e) =>
-              dispatch(setCourse({ ...course, name: e.target.value }))
-            }
-          />
-          <textarea
-            className="form-control mb-2"
-            placeholder="Course Description"
-            onChange={(e) =>
-              dispatch(setCourse({ ...course, description: e.target.value }))
-            }
-            value={course.description}
-          />
-          <input
-            type="date"
-            value={course.startDate}
-            className="form-control mb-2"
-            placeholder="Start Date"
-            onChange={(e) =>
-              dispatch(setCourse({ ...course, startDate: e.target.value }))
-            }
-          />
-          <input
-            type="date"
-            value={course.endDate}
-            className="form-control mb-2"
-            placeholder="End Date"
-            onChange={(e) =>
-              dispatch(setCourse({ ...course, endDate: e.target.value }))
-            }
-          />
-          <input
-            type="text"
-            value={course.department}
-            className="form-control mb-2"
-            placeholder="Department"
-            onChange={(e) =>
-              dispatch(setCourse({ ...course, department: e.target.value }))
-            }
-          />
-          <input
-            type="number"
-            value={course.credits}
-            className="form-control mb-2"
-            placeholder="Credits"
-            onChange={(e) =>
-              dispatch(
-                setCourse({ ...course, credits: parseInt(e.target.value) })
-              )
-            }
-          />
-        </form>
-      )}
       <hr />
       <h2 id="wd-dashboard-published">
         Published Courses ({relevantCourses.length})
@@ -193,6 +89,20 @@ export default function Dashboard() {
             onClick={() => setEnrolled(!enrolled)}
           >
             Enrollments
+          </button>
+        )}
+        {currentUser?.role === "FACULTY" && (
+          <button
+            id="wd-add-course-btn"
+            className="btn btn-primary float-end"
+            data-bs-toggle="modal"
+            data-bs-target="#wd-add-course-dialog"
+          >
+            <FaPlus
+              className="position-relative me-2"
+              style={{ bottom: "1px" }}
+            />
+            Course
           </button>
         )}
       </h2>
@@ -206,10 +116,6 @@ export default function Dashboard() {
               style={{ width: "300px" }}
             >
               <div className="card rounded-3 overflow-hidden">
-                {/* <Link
-                  className="wd-dashboard-course-link text-decoration-none text-dark"
-                  href={`/kanbas/courses/${course.number}/home`}
-                > */}
                 <Image
                   src={`/images/${course.number}.jpg`}
                   height={160}
@@ -237,21 +143,18 @@ export default function Dashboard() {
                   {currentUser?.role === "FACULTY" && (
                     <button
                       className="btn btn-danger float-end"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        dispatch(deleteCourse(course._id));
-                      }}
+                      onClick={() => removeCourse(course._id)}
                     >
                       Delete
                     </button>
                   )}
                   {currentUser?.role === "FACULTY" && (
                     <button
+                      id="wd-edit-course-btn"
+                      data-bs-toggle="modal"
+                      data-bs-target="#wd-edit-course-dialog"
                       className="btn btn-warning float-end me-2"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        dispatch(setCourse(course));
-                      }}
+                      onClick={() => handleEditCourse(course)}
                     >
                       Edit
                     </button>
@@ -273,12 +176,22 @@ export default function Dashboard() {
                     </button>
                   )}
                 </div>
-                {/* </Link> */}
               </div>
             </div>
           ))}
         </div>
       </div>
+      <AddCourseModal
+        courses={relevantCourses}
+        setCourses={setRelevantCourses}
+      />
+      {!!selectedCourse && (
+        <EditCourseModal
+          course={selectedCourse}
+          courses={relevantCourses}
+          setCourses={setRelevantCourses}
+        />
+      )}
     </div>
   );
 }

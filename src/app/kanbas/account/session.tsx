@@ -1,5 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useEffect, useState } from "react";
+"use client";
+
+import { useCallback, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import * as client from "./client";
 import { setCurrentUser } from "../store/reducers/accountReducer";
@@ -7,24 +9,28 @@ import { setCurrentUser } from "../store/reducers/accountReducer";
 export default function Session({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
-  const [pending, setPending] = useState(true);
   const dispatch = useDispatch();
+  const [pending, setPending] = useState(true);
 
-  useEffect(() => {
-    const fetchProfile = async () => {
-      try {
-        const currentUser = await client.profile();
-        dispatch(setCurrentUser(currentUser));
-      } catch (err: any) {
-        console.error(err);
-      }
-      setPending(false);
-    };
-
-    fetchProfile();
+  const fetchProfile = useCallback(() => {
+    client
+      .profile()
+      .then((user) => {
+        dispatch(setCurrentUser(user));
+        setPending(false);
+      })
+      .catch(() => {
+        setPending(false);
+      });
   }, [dispatch]);
 
-  if (!pending) {
-    return children;
+  useEffect(() => {
+    fetchProfile();
+  }, [fetchProfile]);
+
+  if (pending) {
+    return <div>Loading...</div>;
   }
+
+  return children;
 }
