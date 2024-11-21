@@ -13,7 +13,14 @@ import { deleteCourse, fetchAllCourses } from "../courses/client";
 import { findMyCourses } from "../account/client";
 import { FaPlus } from "react-icons/fa6";
 import { useRouter } from "next/navigation";
-import CourseModal, { ModalType } from "./courseModal";
+import dynamic from "next/dynamic";
+
+enum ModalType {
+  ADD = "ADD",
+  EDIT = "EDIT",
+}
+
+const CourseModal = dynamic(() => import("./courseModal"), { ssr: false });
 
 export default function Dashboard() {
   const router = useRouter();

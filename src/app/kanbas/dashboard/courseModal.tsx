@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import { Modal } from "bootstrap";
 import { updateCourse } from "../courses/client";
 
-export enum ModalType {
+enum ModalType {
   ADD = "ADD",
   EDIT = "EDIT",
 }
