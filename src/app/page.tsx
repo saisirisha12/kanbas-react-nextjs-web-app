@@ -24,10 +24,26 @@ export default function Home() {
         </li>
         <li>
           <Link
-            id="wd-github"
+            id="wd-github-ui"
             href="https://github.com/ViharReddy/kanbas-react-nextjs-web-app"
           >
-            GitHub
+            GitHub (Client)
+          </Link>
+        </li>
+        <li>
+          <Link
+            id="wd-github-api"
+            href="https://github.com/ViharReddy/kanbas-node-server-app"
+          >
+            GitHub (Server)
+          </Link>
+        </li>
+        <li>
+          <Link
+            id="wd-server-url"
+            href="https://kanbas-node-server-app-dmgk.onrender.com"
+          >
+            Server (Deployed on Render.com)
           </Link>
         </li>
       </ul>
