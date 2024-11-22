@@ -51,3 +51,17 @@ export const createCourse = async (course: any, userId: string) => {
   );
   return response.data;
 };
+
+export const enrollCourse = async (userId: string, courseId: string) => {
+  const response = await axiosWithCredentials.post(
+    `${USERS_API}/${userId}/courses/${courseId}/enroll`
+  );
+  return response.data;
+};
+
+export const unenrollCourse = async (userId: string, courseId: string) => {
+  const response = await axiosWithCredentials.post(
+    `${USERS_API}/${userId}/courses/${courseId}/unenroll`
+  );
+  return response.data;
+};

@@ -1,15 +1,25 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { removeAssignment } from "@/app/kanbas/store/reducers/assignmentsReducer";
 import { useDispatch, useSelector } from "react-redux";
+import * as client from "../../client";
 
 export default function RemoveAssignmentDialog({
   assignmentId,
 }: {
-  assignmentId: number;
+  assignmentId: string;
 }) {
   const { assignments } = useSelector((state: any) => state.assignmentsReducer);
   const assignment = assignments.find((a: any) => a._id === assignmentId);
   const dispatch = useDispatch();
+
+  const deleteAssignment = async () => {
+    try {
+      await client.deleteAssignment(assignmentId as string);
+      dispatch(removeAssignment(assignmentId));
+    } catch (error) {
+      alert("Unable to delete assignment. Please try again.");
+    }
+  };
 
   return (
     <div
@@ -49,7 +59,7 @@ export default function RemoveAssignmentDialog({
               type="button"
               className="btn btn-danger"
               data-bs-dismiss="modal"
-              onClick={() => dispatch(removeAssignment(assignmentId))}
+              onClick={deleteAssignment}
             >
               Yes
             </button>

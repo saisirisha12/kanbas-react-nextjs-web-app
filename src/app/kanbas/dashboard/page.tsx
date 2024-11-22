@@ -3,17 +3,15 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import {
-  addEnrollment,
-  deleteEnrollment,
-} from "../store/reducers/enrollmentsReducer";
 import { deleteCourse, fetchAllCourses } from "../courses/client";
 import { findMyCourses } from "../account/client";
 import { FaPlus } from "react-icons/fa6";
 import { useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
+import { Course } from "../types";
+import * as client from "../account/client";
 
 enum ModalType {
   ADD = "ADD",
@@ -25,52 +23,70 @@ const CourseModal = dynamic(() => import("./courseModal"), { ssr: false });
 export default function Dashboard() {
   const router = useRouter();
   const { currentUser } = useSelector((state: any) => state.accountReducer);
-  const dispatch = useDispatch();
-  const { enrollments } = useSelector((state: any) => state.enrollmentsReducer);
+  const [allCourses, setAllCourses] = useState<Course[] | undefined>(undefined);
+  const [enrolledCourses, setEnrolledCourses] = useState<Course[] | undefined>(
+    undefined
+  );
+  const [relevantCourses, setRelevantCourses] = useState<Course[]>([]);
+
+  const [selectedCourse, setSelectedCourse] = useState<Course | undefined>(
+    undefined
+  );
+
   const [enrolled, setEnrolled] = useState(true);
-  const [relevantCourses, setRelevantCourses] = useState<any[]>([]);
-  const [selectedCourse, setSelectedCourse] = useState<any>(null);
 
   useEffect(() => {
     if (!currentUser) {
       router.push("/kanbas/account/login");
-    }
-  }, [currentUser, router]);
-
-  useEffect(() => {
-    if (enrolled) {
-      findMyCourses(currentUser?._id).then((data) => setRelevantCourses(data));
     } else {
-      fetchAllCourses().then((data) => setRelevantCourses(data));
+      if (enrolled) {
+        if (!enrolledCourses) {
+          findMyCourses(currentUser?._id).then((data) => {
+            setEnrolledCourses(data);
+            setRelevantCourses(data);
+          });
+        } else {
+          setRelevantCourses(enrolledCourses);
+        }
+      } else {
+        if (!allCourses) {
+          fetchAllCourses().then((data) => {
+            setAllCourses(data);
+            setRelevantCourses(data);
+          });
+        } else {
+          setRelevantCourses(allCourses);
+        }
+      }
     }
-  }, [enrolled, currentUser]);
+  }, [currentUser, router, enrolled, enrolledCourses, allCourses]);
 
-  const isEnrolled = (c: any) => {
-    return enrollments.some(
-      (enrollment: any) =>
-        enrollment.user === currentUser?._id && enrollment.course === c.number
-    );
+  const isEnrolled = (c: Course) => {
+    return enrolledCourses?.some((course) => course._id === c._id);
   };
 
-  const unenroll = (c: any) => {
-    dispatch(
-      deleteEnrollment(enrollments.find((e: any) => e.course === c.number)._id)
-    );
+  const unenroll = async (c: Course) => {
+    try {
+      await client.unenrollCourse(currentUser?._id, c._id);
+      setEnrolledCourses(
+        enrolledCourses?.filter((course) => course._id !== c._id) || []
+      );
+    } catch (error) {
+      alert("Unable to unenroll course. Please try again later.");
+    }
   };
 
-  const enroll = (c: any) => {
-    console.log(c);
-    dispatch(
-      addEnrollment({
-        _id: enrollments[enrollments.length - 1]._id + 1,
-        user: currentUser?._id,
-        course: c.number,
-      })
-    );
+  const enroll = async (c: Course) => {
+    try {
+      await client.enrollCourse(currentUser?._id, c._id);
+      setEnrolledCourses([...(enrolledCourses || []), c]);
+    } catch (error) {
+      alert("Unable to enroll course. Please try again later.");
+    }
   };
 
   const handleAddCourse = () => {
-    setSelectedCourse(null);
+    setSelectedCourse(undefined);
   };
 
   const handleEditCourse = (course: any) => {

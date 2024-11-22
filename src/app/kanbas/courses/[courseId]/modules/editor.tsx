@@ -18,8 +18,11 @@ export default function ModuleEditor({ dialogTitle }: { dialogTitle: string }) {
   const addNewModule = async () => {
     try {
       if (!courseId) return;
-      await client.createModuleForCourse(courseId as string, module);
-      dispatch(addModule(module));
+      const newModule = await client.createModuleForCourse(
+        courseId as string,
+        module
+      );
+      dispatch(addModule(newModule));
     } catch (error) {
       alert("Unable to add module. Please try again.");
     }
@@ -50,7 +53,7 @@ export default function ModuleEditor({ dialogTitle }: { dialogTitle: string }) {
               <input
                 type="text"
                 className="form-control"
-                defaultValue={module.name}
+                value={module.name}
                 onChange={(e) =>
                   dispatch(
                     setModule({

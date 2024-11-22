@@ -9,6 +9,7 @@ import {
   addAssignment,
   updateAssignment,
 } from "@/app/kanbas/store/reducers/assignmentsReducer";
+import * as client from "../../../client";
 
 export default function AssignmentEditor() {
   const { currentUser } = useSelector((state: any) => state.accountReducer);
@@ -35,11 +36,16 @@ export default function AssignmentEditor() {
         }
   );
 
-  const saveChanges = () => {
+  const saveChanges = async () => {
     if (assignmentId === "new") {
-      dispatch(addAssignment(newAssignment));
+      const response = await client.createAssignmentForCourse(
+        courseId as string,
+        newAssignment
+      );
+      dispatch(addAssignment(response));
     } else if (assignment) {
-      dispatch(updateAssignment(newAssignment));
+      const response = await client.updateAssignment(newAssignment);
+      dispatch(updateAssignment(response));
     }
     push(`/kanbas/courses/${courseId}/assignments`);
   };

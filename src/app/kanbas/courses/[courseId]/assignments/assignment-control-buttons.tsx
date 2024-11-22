@@ -6,7 +6,7 @@ import RemoveAssignmentDialog from "./remove-assignment-dialog";
 export default function AssignmentControlButtons({
   assignmentId,
 }: {
-  assignmentId: number;
+  assignmentId: string;
 }) {
   return (
     <div className="float-end my-auto text-nowrap">

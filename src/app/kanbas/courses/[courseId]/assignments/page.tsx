@@ -6,8 +6,11 @@ import AssignmentControlButtons from "./assignment-control-buttons";
 import { PiNotePencil } from "react-icons/pi";
 import AssignmentsControlButtons from "./assignments-control-buttons";
 import { useParams } from "next/navigation";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Link from "next/link";
+import { useCallback, useEffect } from "react";
+import * as client from "../../client";
+import { setAssignments } from "@/app/kanbas/store/reducers/assignmentsReducer";
 
 function formatDateTime(dateString: string): string {
   const months = [
@@ -43,6 +46,18 @@ export default function Assignments() {
   const { courseId } = useParams();
   const { currentUser } = useSelector((state: any) => state.accountReducer);
   const { assignments } = useSelector((state: any) => state.assignmentsReducer);
+  const dispatch = useDispatch();
+
+  const fetchAssignments = useCallback(async () => {
+    const assignments = await client.findAssignmentsForCourse(
+      courseId as string
+    );
+    dispatch(setAssignments(assignments));
+  }, [courseId, dispatch]);
+
+  useEffect(() => {
+    fetchAssignments();
+  }, [fetchAssignments]);
 
   return (
     <div className="row">
@@ -55,49 +70,43 @@ export default function Assignments() {
             {currentUser?.role === "FACULTY" && <AssignmentsControlButtons />}
           </div>
           <ul className="wd-assignment-list list-group rounded-0">
-            {assignments
-              .filter((assignment: any) => assignment.course === courseId)
-              .map((assignment: any) => (
-                <li
-                  key={assignment._id}
-                  className="wd-assignment-list-item list-group-item p-3 ps-1"
-                >
-                  <div className="d-flex">
-                    <BsGripVertical className="me-2 fs-3 float-start my-auto" />
-                    <PiNotePencil className="me-2 fs-2 my-auto" />
-                    <div className="flex-fill">
-                      <Link
-                        className="wd-assignment-link fw-bold"
-                        href={`/kanbas/courses/${courseId}/assignments/${assignment._id}`}
-                      >
-                        {assignment.title}
-                      </Link>
-                      <br />
-                      <div className="fs-6">
-                        {assignment.modules.length > 1 && (
-                          <>
-                            <span className="text-danger">
-                              Multiple Modules
-                            </span>
-                            <span> | </span>
-                          </>
-                        )}
-                        Not available until{" "}
-                        {formatDateTime(assignment.availableFrom)} |
-                      </div>
-                      <div className="fs-6">
-                        <b>Due</b> {formatDateTime(assignment.dueDate)} |{" "}
-                        {assignment.points} pts
-                      </div>
+            {assignments.map((assignment: any) => (
+              <li
+                key={assignment._id}
+                className="wd-assignment-list-item list-group-item p-3 ps-1"
+              >
+                <div className="d-flex">
+                  <BsGripVertical className="me-2 fs-3 float-start my-auto" />
+                  <PiNotePencil className="me-2 fs-2 my-auto" />
+                  <div className="flex-fill">
+                    <Link
+                      className="wd-assignment-link fw-bold"
+                      href={`/kanbas/courses/${courseId}/assignments/${assignment._id}`}
+                    >
+                      {assignment.title}
+                    </Link>
+                    <br />
+                    <div className="fs-6">
+                      {assignment.modules.length > 1 && (
+                        <>
+                          <span className="text-danger">Multiple Modules</span>
+                          <span> | </span>
+                        </>
+                      )}
+                      Not available until{" "}
+                      {formatDateTime(assignment.availableFrom)} |
                     </div>
-                    {currentUser?.role === "FACULTY" && (
-                      <AssignmentControlButtons
-                        assignmentId={parseInt(assignment?._id)}
-                      />
-                    )}
+                    <div className="fs-6">
+                      <b>Due</b> {formatDateTime(assignment.dueDate)} |{" "}
+                      {assignment.points} pts
+                    </div>
                   </div>
-                </li>
-              ))}
+                  {currentUser?.role === "FACULTY" && (
+                    <AssignmentControlButtons assignmentId={assignment?._id} />
+                  )}
+                </div>
+              </li>
+            ))}
           </ul>
         </li>
       </ul>
