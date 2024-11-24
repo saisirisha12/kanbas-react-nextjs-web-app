@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 export default function Home() {
+  const labs = ["lab1", "lab2", "lab3", "lab4", "lab5"];
   return (
     <div>
       <h1>Sai Vihar Reddy Gunamgari</h1>
@@ -9,15 +10,13 @@ export default function Home() {
         <li>
           <Link href="/labs">Labs</Link>
           <ul>
-            <li>
-              <Link href="/labs/lab1">Lab 1</Link>
-            </li>
-            <li>
-              <Link href="/labs/lab2">Lab 2</Link>
-            </li>
-            <li>
-              <Link href="/labs/lab3">Lab 3</Link>
-            </li>
+            {labs.map((lab) => (
+              <li key={lab}>
+                <Link href={`/labs/${lab}`}>
+                  {lab.charAt(0).toUpperCase() + lab.slice(1)}
+                </Link>
+              </li>
+            ))}
           </ul>
         </li>
         <li>
@@ -25,10 +24,26 @@ export default function Home() {
         </li>
         <li>
           <Link
-            id="wd-github"
+            id="wd-github-ui"
             href="https://github.com/ViharReddy/kanbas-react-nextjs-web-app"
           >
-            GitHub
+            GitHub (Client)
+          </Link>
+        </li>
+        <li>
+          <Link
+            id="wd-github-api"
+            href="https://github.com/ViharReddy/kanbas-node-server-app"
+          >
+            GitHub (Server)
+          </Link>
+        </li>
+        <li>
+          <Link
+            id="wd-server-url"
+            href="https://kanbas-node-server-app-dmgk.onrender.com"
+          >
+            Server (Deployed on Render.com)
           </Link>
         </li>
       </ul>
