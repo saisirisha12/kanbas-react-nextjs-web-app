@@ -6,13 +6,42 @@ import { User } from "../../types";
 import { FaUserCircle } from "react-icons/fa";
 import * as client from "../client";
 import * as courseClient from "../../courses/client";
-import { formatDateTime } from "../../courses/[courseId]/assignments/page";
 import UserDetails from "./details";
 import dynamic from "next/dynamic";
 import { FaPlus } from "react-icons/fa6";
 import { useSelector } from "react-redux";
 
 const AddUserModal = dynamic(() => import("./add-user-modal"), { ssr: false });
+
+export function formatDateTime(dateString: string): string {
+  const months = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+
+  const date = new Date(dateString);
+
+  const month = months[date.getMonth()];
+  const day = date.getDate();
+
+  let hours = date.getHours();
+  const minutes = date.getMinutes().toString().padStart(2, "0");
+
+  const ampm = hours >= 12 ? "pm" : "am";
+  hours = hours % 12 || 12;
+
+  return `${month} ${day} at ${hours}:${minutes}${ampm}`;
+}
 
 interface UserProps {
   courseId?: string;
