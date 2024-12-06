@@ -123,9 +123,7 @@ export default function AddUserModal({
                 value={user?.role}
                 onChange={(e) => setUser({ ...user, role: e.target.value })}
               >
-                <option value="STUDENT" selected>
-                  Student
-                </option>
+                <option value="STUDENT">Student</option>
                 <option value="FACULTY">Faculty</option>
                 <option value="ADMIN">Admin</option>
               </select>
