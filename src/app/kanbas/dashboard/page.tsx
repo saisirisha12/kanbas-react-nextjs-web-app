@@ -39,7 +39,7 @@ export default function Dashboard() {
     if (!currentUser) {
       router.push("/kanbas/account/login");
     } else {
-      if (enrolled) {
+      if (enrolled && currentUser.role !== "ADMIN") {
         if (!enrolledCourses) {
           findMyCourses(currentUser?._id).then((data) => {
             setEnrolledCourses(data);
@@ -108,13 +108,14 @@ export default function Dashboard() {
       <hr />
       <h2 id="wd-dashboard-published">
         Published Courses ({relevantCourses.length})
-        {currentUser?.role === "STUDENT" && (
+        {(currentUser?.role === "STUDENT" ||
+          currentUser?.role === "FACULTY") && (
           <button
-            className="btn btn-primary float-end"
+            className="btn btn-primary float-end ms-2"
             id="wd-enrollments-click"
             onClick={() => setEnrolled(!enrolled)}
           >
-            Enrollments
+            {enrolled ? "All Courses" : "My Courses"}
           </button>
         )}
         {currentUser?.role === "FACULTY" && (
@@ -159,9 +160,9 @@ export default function Dashboard() {
                   >
                     {course.description}
                   </p>
-                  {isEnrolled(course) && (
+                  {(isEnrolled(course) || currentUser.role === "ADMIN") && (
                     <Link
-                      className="btn btn-primary"
+                      className="btn btn-primary float-start"
                       href={`/kanbas/courses/${course._id}/home`}
                     >
                       Go
@@ -186,22 +187,26 @@ export default function Dashboard() {
                       Edit
                     </button>
                   )}
-                  {currentUser?.role === "STUDENT" && isEnrolled(course) && (
-                    <button
-                      className="btn btn-danger float-end"
-                      onClick={() => unenroll(course)}
-                    >
-                      Unenroll
-                    </button>
-                  )}
-                  {currentUser?.role === "STUDENT" && !isEnrolled(course) && (
-                    <button
-                      className="btn btn-success float-end"
-                      onClick={() => enroll(course)}
-                    >
-                      Enroll
-                    </button>
-                  )}
+                  {(currentUser?.role === "STUDENT" ||
+                    currentUser?.role === "FACULTY") &&
+                    isEnrolled(course) && (
+                      <button
+                        className="btn btn-danger float-end mt-2 me-2"
+                        onClick={() => unenroll(course)}
+                      >
+                        Unenroll
+                      </button>
+                    )}
+                  {(currentUser?.role === "STUDENT" ||
+                    currentUser?.role === "FACULTY") &&
+                    !isEnrolled(course) && (
+                      <button
+                        className="btn btn-success float-end me-2"
+                        onClick={() => enroll(course)}
+                      >
+                        Enroll
+                      </button>
+                    )}
                 </div>
               </div>
             </div>

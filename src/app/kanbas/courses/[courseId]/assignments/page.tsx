@@ -12,7 +12,7 @@ import { useCallback, useEffect } from "react";
 import * as client from "../../client";
 import { setAssignments } from "@/app/kanbas/store/reducers/assignmentsReducer";
 
-function formatDateTime(dateString: string): string {
+export function formatDateTime(dateString: string): string {
   const months = [
     "Jan",
     "Feb",

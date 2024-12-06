@@ -10,7 +10,7 @@ export interface Course {
 }
 
 export interface Module {
-  _id: string;
+  _id?: string;
   name: string;
   course: string;
   lessons: Lesson[];
@@ -30,8 +30,20 @@ export interface Assignment {
   description: string;
   course: string;
   modules: string[];
-  availableFrom: string;
-  availableUntil: string;
-  dueDate: string;
+  availableFrom: Date;
+  availableUntil: Date;
+  dueDate: Date;
   points: number;
+}
+
+export interface User {
+  _id: string;
+  firstName: string;
+  lastName: string;
+  loginId: string;
+  password: string;
+  role: string;
+  section: string;
+  lastActivity: Date;
+  totalActivity: number;
 }
