@@ -1,5 +1,5 @@
 export interface Course {
-  _id?: string;
+  _id: string;
   number: string;
   name: string;
   description: string;
@@ -37,7 +37,7 @@ export interface Assignment {
 }
 
 export interface User {
-  _id?: string;
+  _id: string;
   firstName: string;
   lastName: string;
   loginId: string;
