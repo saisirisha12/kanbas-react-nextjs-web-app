@@ -13,12 +13,23 @@ export default function AccountLayout({
   const pathname = usePathname();
   const { currentUser } = useSelector((state: any) => state.accountReducer);
   const links = currentUser
-    ? [
-        {
-          label: "Profile",
-          href: "/kanbas/account/profile",
-        },
-      ]
+    ? currentUser.role === "ADMIN"
+      ? [
+          {
+            label: "Profile",
+            href: "/kanbas/account/profile",
+          },
+          {
+            label: "Users",
+            href: "/kanbas/account/users",
+          },
+        ]
+      : [
+          {
+            label: "Profile",
+            href: "/kanbas/account/profile",
+          },
+        ]
     : [
         {
           label: "Login",

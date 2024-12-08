@@ -4,7 +4,6 @@ import { Module } from "../../types";
 const initialState: { modules: Module[]; module: Module } = {
   modules: [],
   module: {
-    _id: "",
     name: "",
     course: "",
     lessons: [],

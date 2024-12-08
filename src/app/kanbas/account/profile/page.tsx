@@ -27,7 +27,6 @@ export default function Profile() {
   }, [logoutRequested, router]);
 
   const updateProfile = useCallback(async () => {
-    console.log("Updating profile...", profile);
     const updatedProfile = await client.updateUser(profile);
     dispatch(setCurrentUser(updatedProfile));
   }, [profile, dispatch]);
@@ -88,7 +87,9 @@ export default function Profile() {
           id="wd-dob"
           className="mb-2 form-control"
           type="date"
-          value={profile?.dob}
+          value={
+            profile?.dob ? new Date(profile.dob).toISOString().slice(0, 10) : ""
+          }
           onChange={(e) => setProfile({ ...profile, dob: e.target.value })}
         />
         <label className="mb-1 form-label" htmlFor="wd-email">
@@ -112,7 +113,7 @@ export default function Profile() {
         >
           <option value="STUDENT">Student</option>
           <option value="FACULTY">Faculty</option>
-          <option value="TA">TA</option>
+          <option value="ADMIN">Admin</option>
         </select>
         <button
           className="btn btn-primary w-100 mt-2"

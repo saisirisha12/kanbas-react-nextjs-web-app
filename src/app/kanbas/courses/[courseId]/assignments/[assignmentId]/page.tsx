@@ -10,6 +10,7 @@ import {
   updateAssignment,
 } from "@/app/kanbas/store/reducers/assignmentsReducer";
 import * as client from "../../../client";
+import { Assignment } from "@/app/kanbas/types";
 
 export default function AssignmentEditor() {
   const { currentUser } = useSelector((state: any) => state.accountReducer);
@@ -18,19 +19,18 @@ export default function AssignmentEditor() {
   const dispatch = useDispatch();
   const { assignments } = useSelector((state: any) => state.assignmentsReducer);
   const assignment = assignments.find(
-    (assignment: any) => assignment._id === parseInt(assignmentId as string)
+    (assignment: Assignment) => assignment._id === assignmentId
   );
-  const [newAssignment, setNewAssignment] = useState(
+  const [newAssignment, setNewAssignment] = useState<Assignment>(
     assignment !== undefined
       ? assignment
       : {
-          _id: assignments[assignments.length - 1]._id + 1,
           title: "",
           course: courseId,
           modules: [],
-          availableFrom: "",
-          availableUntil: "",
-          dueDate: "",
+          availableFrom: null,
+          availableUntil: null,
+          dueDate: null,
           points: 0,
           description: "",
         }
@@ -252,11 +252,17 @@ export default function AssignmentEditor() {
                 id="wd-due-date"
                 className="form-control"
                 type="datetime-local"
-                defaultValue={newAssignment?.dueDate}
+                defaultValue={
+                  newAssignment?.dueDate
+                    ? new Date(newAssignment?.dueDate)
+                        .toISOString()
+                        .slice(0, 16)
+                    : ""
+                }
                 onChange={(e) =>
                   setNewAssignment({
                     ...newAssignment,
-                    dueDate: e.target.value,
+                    dueDate: new Date(e.target.value),
                   })
                 }
                 disabled={isDisabled}
@@ -273,11 +279,17 @@ export default function AssignmentEditor() {
                     id="wd-available-from"
                     className="form-control"
                     type="datetime-local"
-                    defaultValue={newAssignment?.availableFrom}
+                    defaultValue={
+                      newAssignment?.availableFrom
+                        ? new Date(newAssignment?.availableFrom)
+                            .toISOString()
+                            .slice(0, 16)
+                        : ""
+                    }
                     onChange={(e) =>
                       setNewAssignment({
                         ...newAssignment,
-                        availableFrom: e.target.value,
+                        availableFrom: new Date(e.target.value),
                       })
                     }
                     disabled={isDisabled}
@@ -291,11 +303,17 @@ export default function AssignmentEditor() {
                     id="wd-until"
                     className="form-control"
                     type="datetime-local"
-                    defaultValue={newAssignment?.availableUntil}
+                    defaultValue={
+                      newAssignment?.availableUntil
+                        ? new Date(newAssignment?.availableUntil)
+                            .toISOString()
+                            .slice(0, 16)
+                        : ""
+                    }
                     onChange={(e) =>
                       setNewAssignment({
                         ...newAssignment,
-                        availableUntil: e.target.value,
+                        availableUntil: new Date(e.target.value),
                       })
                     }
                     disabled={isDisabled}

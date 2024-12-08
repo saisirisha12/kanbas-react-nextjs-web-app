@@ -11,36 +11,7 @@ import Link from "next/link";
 import { useCallback, useEffect } from "react";
 import * as client from "../../client";
 import { setAssignments } from "@/app/kanbas/store/reducers/assignmentsReducer";
-
-function formatDateTime(dateString: string): string {
-  const months = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
-  ];
-
-  const date = new Date(dateString);
-
-  const month = months[date.getMonth()];
-  const day = date.getDate();
-
-  let hours = date.getHours();
-  const minutes = date.getMinutes().toString().padStart(2, "0");
-
-  const ampm = hours >= 12 ? "pm" : "am";
-  hours = hours % 12 || 12;
-
-  return `${month} ${day} at ${hours}:${minutes}${ampm}`;
-}
+import { formatDateTime } from "@/app/kanbas/account/users/users";
 
 export default function Assignments() {
   const { courseId } = useParams();

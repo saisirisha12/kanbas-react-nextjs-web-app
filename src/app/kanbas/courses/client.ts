@@ -1,10 +1,16 @@
 import axios from "axios";
-import { Assignment, Module } from "../types";
+import { Assignment, Module, Question, Quiz } from "../types";
 
 const REMOTE_SERVER = process.env.NEXT_PUBLIC_REMOTE_SERVER;
 const COURSES_API = `${REMOTE_SERVER}/api/courses`;
 const MODULES_API = `${REMOTE_SERVER}/api/modules`;
 const ASSIGNMENTS_API = `${REMOTE_SERVER}/api/assignments`;
+const QUIZZES_API = `${REMOTE_SERVER}/api/quizzes`;
+
+export const findUsersForCourse = async (courseId: string) => {
+  const { data } = await axios.get(`${COURSES_API}/${courseId}/users`);
+  return data;
+};
 
 export const fetchAllCourses = async () => {
   const { data } = await axios.get(COURSES_API);
@@ -74,5 +80,33 @@ export const updateAssignment = async (assignment: Assignment) => {
 
 export const deleteAssignment = async (assignmentId: string) => {
   const { data } = await axios.delete(`${ASSIGNMENTS_API}/${assignmentId}`);
+  return data;
+};
+
+export const findQuizzesForCourse = async (courseId: string) => {
+  const { data } = await axios.get(`${COURSES_API}/${courseId}/quizzes`);
+  return data;
+};
+
+export const deleteQuiz = async (quizId: string) => {
+  const { data } = await axios.delete(`${QUIZZES_API}/${quizId}`);
+  return data;
+};
+
+export const createQuizForCourse = async (courseId: string, quiz: Quiz) => {
+  const { data } = await axios.post(`${COURSES_API}/${courseId}/quizzes`, quiz);
+  return data;
+};
+
+export const updateQuiz = async (quiz: Quiz) => {
+  const { data } = await axios.put(`${QUIZZES_API}/${quiz._id}`, quiz);
+  return data;
+};
+
+export const addQuestionToQuiz = async (quizId: string, question: Question) => {
+  const { data } = await axios.post(
+    `${QUIZZES_API}/${quizId}/questions`,
+    question
+  );
   return data;
 };
