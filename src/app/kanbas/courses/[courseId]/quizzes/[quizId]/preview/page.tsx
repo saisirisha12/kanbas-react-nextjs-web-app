@@ -5,7 +5,7 @@ import QuestionNavigator from "./question-navigator";
 
 export default function QuizPreview() {
   return (
-    <div className="container d-flex">
+    <div className="container">
       <div>
         {/* quiz banner */}
         <div className="mb-4">

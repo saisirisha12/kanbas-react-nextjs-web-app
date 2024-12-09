@@ -26,6 +26,8 @@ export default function QuizEditor() {
   const [activeTab, setActiveTab] = useState("Details");
   const isDisabled = currentUser?.role !== "FACULTY";
 
+  const [questionId, setQuestionId] = useState<string | null>(null);
+
   const { quizzes } = useSelector((state: any) => state.quizzesReducer);
   const quiz = quizzes.find((q: any) => q._id === quizId);
 
@@ -60,6 +62,10 @@ export default function QuizEditor() {
       dispatch(updateQuiz(response));
     }
     push(`/kanbas/courses/${courseId}/quizzes`);
+  };
+
+  const handleAddNewQuestion = () => {
+    setQuestionId(null); // Reset questionId for adding a new question
   };
 
   return (
@@ -406,19 +412,8 @@ export default function QuizEditor() {
                 id="wd-add-question-btn"
                 className="btn btn-outline-secondary px-4" /* Added padding for consistency */
                 data-bs-toggle="modal"
-                data-bs-target="#wd-quiz-dialog"
-              >
+                data-bs-target={`#wd-quiz-${questionId}-dialog`} >
                 + New Question
-              </button>
-
-              {/* Edit Existing Question Button */}
-              <button
-                id="wd-edit-question-btn"
-                className="btn btn-outline-secondary px-4" /* Added padding for consistency */
-                data-bs-toggle="modal"
-                data-bs-target="#wd-quiz-dialog"
-              >
-                Edit Existing Question
               </button>
             </div>
 
@@ -430,7 +425,7 @@ export default function QuizEditor() {
       {/* modal */}
       <div
         className="modal fade"
-        id="wd-quiz-dialog"
+        id={`wd-quiz-${questionId}-dialog`}
         tabIndex={-1}
         aria-labelledby="wd-quiz-dialog-label"
         aria-hidden="true"
@@ -438,7 +433,7 @@ export default function QuizEditor() {
         <div className="modal-dialog modal-lg">
           <div className="modal-content">
             <div className="modal-body">
-              <QuestionEditor />
+              <QuestionEditor questionId={questionId}/>
             </div>
           </div>
         </div>

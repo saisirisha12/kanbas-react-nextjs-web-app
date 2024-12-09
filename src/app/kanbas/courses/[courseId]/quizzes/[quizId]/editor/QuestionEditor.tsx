@@ -10,11 +10,17 @@ import { addQuestion } from "@/app/kanbas/store/reducers/questionsReducer";
 export default function QuestionEditor({
   questionId,
 }: {
-  questionId?: string;
+  questionId?: string | null;
 }) {
   const { quizId } = useParams();
   const { questions } = useSelector((state: any) => state.questionsReducer);
   const dispatch = useDispatch();
+  if(questionId == null){
+    console.log("Null question ID");
+  }
+  else{
+    console.log("QuestionID: ", questionId);
+  }
   const question: Question = questions.find((q: any) => q._id === questionId);
   const [newQuestion, setNewQuestion] = useState<Question>(
     question || {

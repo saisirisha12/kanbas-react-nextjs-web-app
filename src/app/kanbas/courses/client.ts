@@ -6,6 +6,7 @@ const COURSES_API = `${REMOTE_SERVER}/api/courses`;
 const MODULES_API = `${REMOTE_SERVER}/api/modules`;
 const ASSIGNMENTS_API = `${REMOTE_SERVER}/api/assignments`;
 const QUIZZES_API = `${REMOTE_SERVER}/api/quizzes`;
+const QUESTIONS_API = `${REMOTE_SERVER}/api/questions`;
 
 export const findUsersForCourse = async (courseId: string) => {
   const { data } = await axios.get(`${COURSES_API}/${courseId}/users`);
@@ -108,5 +109,15 @@ export const addQuestionToQuiz = async (quizId: string, question: Question) => {
     `${QUIZZES_API}/${quizId}/questions`,
     question
   );
+  return data;
+};
+
+export const findQuestionsForQuiz = async (quizId: string) => {
+  const { data } = await axios.get(`${QUIZZES_API}/${quizId}/questions`);
+  return data;
+};
+
+export const deleteQuestion = async (questionId: string) => {
+  const { data } = await axios.delete(`${QUESTIONS_API}/${questionId}`);
   return data;
 };
