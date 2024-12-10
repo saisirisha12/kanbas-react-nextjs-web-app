@@ -121,3 +121,11 @@ export const deleteQuestion = async (questionId: string) => {
   const { data } = await axios.delete(`${QUESTIONS_API}/${questionId}`);
   return data;
 };
+
+export const updateQuestion = async (question: Question) => {
+  console.log(question);
+  console.log(question._id);
+  const { data } = await axios.put(`${QUESTIONS_API}/${question._id}`, question);
+  console.log(data);
+  return data;
+};

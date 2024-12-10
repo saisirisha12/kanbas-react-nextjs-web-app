@@ -9,12 +9,14 @@ import { useSelector } from "react-redux";
 
 export default function QuizDetails() {
   const { push } = useRouter();
+  const { currentUser } = useSelector((state: any) => state.accountReducer);
   const { courseId, quizId } = useParams();
   const { quizzes } = useSelector((state: any) => state.quizzesReducer);
   const quiz = quizzes.find((quiz: any) => quiz._id === quizId);
 
   return (
     <div className="quiz-details-container">
+      {currentUser?.role === "FACULTY" &&
       <div className="row mt-2">
         <div className="col-md-5 d-flex align-items-center justify-content-end">
           <button
@@ -37,6 +39,7 @@ export default function QuizDetails() {
           </button>
         </div>
       </div>
+    }
       <hr />
       <h3>{quiz.title}</h3>
 
@@ -268,6 +271,21 @@ export default function QuizDetails() {
         </div>
       </div>
       <hr />
+      {currentUser?.role === "STUDENT" &&
+      <div className="row">
+        <div className="col-md-6 d-flex justify-content-end">
+        <button className="btn btn-danger"
+        onClick={() =>
+          push(`/kanbas/courses/${courseId}/quizzes/${quizId}/preview`)
+        }>
+            Start Quiz
+          </button>
+        </div>
+          
+      </div> 
+      }
+
+
     </div>
   );
 }

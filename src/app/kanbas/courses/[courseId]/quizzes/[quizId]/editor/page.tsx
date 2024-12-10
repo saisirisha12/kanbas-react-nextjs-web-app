@@ -15,7 +15,7 @@ import {
 import { FaCheck } from "react-icons/fa6";
 import { PiProhibit } from "react-icons/pi";
 import QuestionEditor from "./QuestionEditor";
-import QuestionNavigator from "../preview/question-navigator";
+import QuestionNavigator from "../question-navigator";
 
 export default function QuizEditor() {
   const { currentUser } = useSelector((state: any) => state.accountReducer);
@@ -25,8 +25,6 @@ export default function QuizEditor() {
 
   const [activeTab, setActiveTab] = useState("Details");
   const isDisabled = currentUser?.role !== "FACULTY";
-
-  const [questionId, setQuestionId] = useState<string | null>(null);
 
   const { quizzes } = useSelector((state: any) => state.quizzesReducer);
   const quiz = quizzes.find((q: any) => q._id === quizId);
@@ -62,10 +60,6 @@ export default function QuizEditor() {
       dispatch(updateQuiz(response));
     }
     push(`/kanbas/courses/${courseId}/quizzes`);
-  };
-
-  const handleAddNewQuestion = () => {
-    setQuestionId(null); // Reset questionId for adding a new question
   };
 
   return (
@@ -394,16 +388,6 @@ export default function QuizEditor() {
         )}
 
         {activeTab === "Questions" && (
-          // <div className="d-flex justify-content-start ms-3 mt-5">
-          //   <button
-          //     id="wd-add-question-btn"
-          //     className="btn btn-outline-secondary"
-          //     data-bs-toggle="modal"
-          //     data-bs-target="#wd-quiz-dialog"
-          //   >
-          //     + New Question
-          //   </button>
-          // </div>
           <div className="ms-3 mt-5">
             {/* Container for buttons */}
             <div className="d-flex justify-content-between align-items-center mb-4">
@@ -412,7 +396,7 @@ export default function QuizEditor() {
                 id="wd-add-question-btn"
                 className="btn btn-outline-secondary px-4" /* Added padding for consistency */
                 data-bs-toggle="modal"
-                data-bs-target={`#wd-quiz-${questionId}-dialog`} >
+                data-bs-target={`#wd-quiz-dialog`} >
                 + New Question
               </button>
             </div>
@@ -425,7 +409,7 @@ export default function QuizEditor() {
       {/* modal */}
       <div
         className="modal fade"
-        id={`wd-quiz-${questionId}-dialog`}
+        id={`wd-quiz-dialog`}
         tabIndex={-1}
         aria-labelledby="wd-quiz-dialog-label"
         aria-hidden="true"
@@ -433,7 +417,7 @@ export default function QuizEditor() {
         <div className="modal-dialog modal-lg">
           <div className="modal-content">
             <div className="modal-body">
-              <QuestionEditor questionId={questionId}/>
+              <QuestionEditor />
             </div>
           </div>
         </div>

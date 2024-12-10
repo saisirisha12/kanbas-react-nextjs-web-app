@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Question } from "@/app/kanbas/types";
 import { useParams } from "next/navigation";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaTrash } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import * as client from "../../../../client";
-import { addQuestion } from "@/app/kanbas/store/reducers/questionsReducer";
+import { addQuestion, updateQuestion } from "@/app/kanbas/store/reducers/questionsReducer";
 
 export default function QuestionEditor({
   questionId,
@@ -15,13 +15,8 @@ export default function QuestionEditor({
   const { quizId } = useParams();
   const { questions } = useSelector((state: any) => state.questionsReducer);
   const dispatch = useDispatch();
-  if(questionId == null){
-    console.log("Null question ID");
-  }
-  else{
-    console.log("QuestionID: ", questionId);
-  }
   const question: Question = questions.find((q: any) => q._id === questionId);
+
   const [newQuestion, setNewQuestion] = useState<Question>(
     question || {
       title: "",
@@ -47,12 +42,19 @@ export default function QuestionEditor({
 
   // saving
   const handleSave = async () => {
-    console.log(newQuestion);
-    const response = await client.addQuestionToQuiz(
-      quizId as string,
-      newQuestion
-    );
-    dispatch(addQuestion(response));
+    if(questionId){
+      const response = await client.updateQuestion(
+        newQuestion
+      );
+      dispatch(updateQuestion(response));
+    }
+    else{
+      const response = await client.addQuestionToQuiz(
+        quizId as string,
+        newQuestion
+      );
+      dispatch(addQuestion(response));
+    }
   };
 
   // cancel
@@ -67,6 +69,15 @@ export default function QuestionEditor({
       points: 0,
     });
   };
+
+  useEffect(() => {
+    if(questionId){
+      setNewQuestion(question);
+    }
+    else{
+      setNewQuestion(newQuestion);
+    }
+  }, [question]);
 
   return (
     <div className="container">
@@ -341,7 +352,7 @@ export default function QuestionEditor({
         >
           Cancel
         </button>
-        <button type="button" className="btn btn-danger" onClick={handleSave}>
+        <button type="button" className="btn btn-danger" data-bs-dismiss="modal" onClick={handleSave}>
           Save Question
         </button>
       </div>
