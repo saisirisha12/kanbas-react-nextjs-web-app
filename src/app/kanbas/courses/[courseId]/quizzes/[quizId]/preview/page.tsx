@@ -24,10 +24,6 @@ export default function QuizPreview() {
         </div>
 
         <QuestionNavigator />
-        <div className="d-flex justify-content-end align-items-center border p-2 rounded bg-light">
-          <label className="text-muted me-3 mb-0">Quiz saved at 8:19am</label>
-          <button className="btn btn-danger">Submit</button>
-        </div>
       </div>
     </div>
   );

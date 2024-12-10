@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import * as client from "../../../client";
 import { removeQuestion } from "@/app/kanbas/store/reducers/questionsReducer";
 

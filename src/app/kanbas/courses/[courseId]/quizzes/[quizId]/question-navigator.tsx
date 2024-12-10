@@ -8,7 +8,7 @@ import {
 } from "@/app/kanbas/store/reducers/questionsReducer";
 import { useDispatch, useSelector } from "react-redux";
 import * as client from "../../../client";
-import { Question } from "@/app/kanbas/types";
+import { Question, QuizAttempt } from "@/app/kanbas/types";
 import QuestionEditor from "./editor/QuestionEditor";
 import RemoveQuestionDialog from "./remove-question-dialog";
 
@@ -46,9 +46,15 @@ export default function QuestionNavigator() {
     }
   };
 
+
+
   const renderQuestion = (question:Question) => {
 
     if (!question) return <div>Question not found.</div>;
+
+    const studentAnswer = quizAttempt.answers.find(
+      (ans) => ans.question === question._id
+    )?.answer;
 
     if (question.type === "Multiple Choice") {
       return (
@@ -66,12 +72,17 @@ export default function QuestionNavigator() {
                 value={option.text}
                 checked={question.correctAnswers[0].text === option.text}/>
               }
+              {currentUser?.role === "STUDENT" &&
               <input
                 className="form-check-input"
                 type="radio"
                 id={`q${question._id}-option${index}`}
                 name={`q${question._id}`}
-                value={option.text}/>
+                value={option.text}
+                checked={studentAnswer === option.text}
+                onChange={() => saveAnswer(question._id, option.text)}
+                />
+              }
               <label
                 className="form-check-label"
                 htmlFor={`q${question._id}-option${index}`}
@@ -100,12 +111,17 @@ export default function QuestionNavigator() {
                 checked={question.correctAnswers[0].text === "true"}
               />
             }
+            {currentUser?.role === "STUDENT" &&
             <input
                 className="form-check-input"
                 type="radio"
                 id={`q${question._id}`}
                 name={`q${question._id}`}
-                value={"true"} />
+                value={"true"} 
+                checked={studentAnswer === "true"}
+                onChange={() => saveAnswer(question._id, "true")}
+                />
+            }
               <label
                 className="form-check-label"
                 htmlFor={`q${question._id}`}>
@@ -122,12 +138,17 @@ export default function QuestionNavigator() {
                 value={"false"}
                 checked={question.correctAnswers[0].text === "false"} />
             }
+            {currentUser?.role === "STUDENT" &&
             <input
                 className="form-check-input"
                 type="radio"
                 id={`q${question._id}`}
                 name={`q${question._id}`}
-                value={"false"} />
+                value={"false"} 
+                checked={studentAnswer === "false"}
+                onChange={() => saveAnswer(question._id, "false")}
+                />
+            }
               <label
                 className="form-check-label"
                 htmlFor={`q${question._id}`}>
@@ -150,10 +171,14 @@ export default function QuestionNavigator() {
               value={answer.text}
             />
           ))}
+          {currentUser?.role === "STUDENT" &&
           <input
               className="form-control"
               type="text"
+              onChange={(e) => saveAnswer(question._id, e.target.value)}
+              value={studentAnswer || ""}
             />
+          }
         </div>
       );
     }
@@ -168,8 +193,55 @@ export default function QuestionNavigator() {
   const currentQuestion = questions[currentQuestionIndex];
   const isEditor = pathname.includes("/editor");
 
+    const [quizAttempt, setQuizAttempt] = useState<QuizAttempt>({
+    quiz: quizId as string,
+    student: currentUser?._id || "",
+    attemptNumber: 1,
+    answers: [],
+    score: 0,
+    date: null,
+  });
+
+  const saveAnswer = (questionId: String | undefined, answerText: string) => {
+    if (!questionId) {
+      console.log("I did not log the answer :(");
+      return;
+    }
+    setQuizAttempt((prev: QuizAttempt) => {
+      const updatedAnswers = prev.answers.filter(
+        (ans) => ans.question !== questionId
+      );
+      updatedAnswers.push({ question: questionId.toString(), answer: answerText });
+      console.log("logged: ",updatedAnswers);
+      return { ...prev, answers: updatedAnswers };
+    });
+  };
+
+  const handleSubmitQuiz = async () => {
+    try {
+      // Set the date field as a Date object before submitting
+      const submissionDate = new Date();
+      setQuizAttempt((prev) => ({
+        ...prev,
+        date: submissionDate,
+      }));
+ 
+      // Save the quiz attempt
+      const savedQuiz = await client.addAnswerToQuiz(quizId.toString(), {
+        ...quizAttempt,
+        date: submissionDate, // Send as a Date object
+      });
+      console.log("Quiz Attempt Saved:", savedQuiz);
+      push(`/kanbas/courses/${courseId}/quizzes/`);
+    } catch (error) {
+      console.error("Error submitting quiz:", error);
+      alert("Failed to submit the quiz. Please try again.");
+    }
+  };
+
 
   return (
+    <div>
       <div className="container d-flex">
         <div className="col-md-9">
           <div className="card mb-4">
@@ -273,6 +345,18 @@ export default function QuestionNavigator() {
           </div>
         </div>
       </div> 
+          
+      </div>
+        <div className="row">
+          {!isEditor && (
+                <div className="d-flex justify-content-end align-items-center border p-2 rounded bg-light">
+                    <label className="text-muted me-3 mb-0">Quiz saved at 8:19am</label>
+                    <button className="btn btn-danger"
+                    onClick={handleSubmitQuiz}>
+                      Submit</button>
+                  </div>
+          )}
+        </div>
       </div>
   );
 }

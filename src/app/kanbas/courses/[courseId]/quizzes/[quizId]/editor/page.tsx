@@ -240,6 +240,30 @@ export default function QuizEditor() {
                   Allow Multiple Attempts
                 </label>
               </div>
+
+              {newQuiz?.multipleAttempts && (
+                  <div className="mt-3">
+                    <label htmlFor="wd-number-of-attempts" className="form-label">
+                      Number of Attempts:
+                    </label>
+                    <input
+                      type="number"
+                      id="wd-number-of-attempts"
+                      className="form-control"
+                      value={newQuiz?.attempts || ""}
+                      onChange={(e) =>
+                        setNewQuiz({
+                          ...newQuiz,
+                          attempts: parseInt(e.target.value) || 1, // Ensure valid number
+                        })
+                      }
+                      min={1} // Minimum attempts allowed
+                      disabled={isDisabled}
+                    />
+                  </div>
+                )}
+
+
               <div className="row my-3">
                 <label
                   htmlFor="wd-time-limit"

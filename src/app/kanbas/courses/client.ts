@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Assignment, Module, Question, Quiz } from "../types";
+import { Assignment, Module, Question, Quiz, QuizAttempt } from "../types";
 
 const REMOTE_SERVER = process.env.NEXT_PUBLIC_REMOTE_SERVER;
 const COURSES_API = `${REMOTE_SERVER}/api/courses`;
@@ -129,3 +129,18 @@ export const updateQuestion = async (question: Question) => {
   console.log(data);
   return data;
 };
+
+export const addAnswerToQuiz = async (quizId: string, answer: QuizAttempt) => {
+  const { data } = await axios.post(
+    `${QUIZZES_API}/${quizId}/answers`,
+    answer
+  );
+  return data;
+};
+ 
+export const getQuizAttempts = async(userId:string,quizId:string) => {
+  const { data } = await axios.get(
+    `${QUIZZES_API}/${quizId}/users/${userId}/allowedAttempts`,
+  );
+  return data;
+}

@@ -6,6 +6,8 @@ import { FaTrash } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import * as client from "../../../../client";
 import { addQuestion, updateQuestion } from "@/app/kanbas/store/reducers/questionsReducer";
+// import ReactQuill from "react-quill";
+// import "react-quill/dist/quill.snow.css";
 
 export default function QuestionEditor({
   questionId,
@@ -68,6 +70,18 @@ export default function QuestionEditor({
       correctAnswers: [],
       points: 0,
     });
+  };
+
+  const toolbarOptions = [
+    [{ header: [1, 2, 3, false] }], 
+    ["bold", "italic", "underline"], 
+    [{ list: "ordered" }, { list: "bullet" }], 
+    [{ align: [] }], 
+    ["image", "link"], 
+    ["clean"], 
+  ];
+  const modules = {
+    toolbar: toolbarOptions,
   };
 
   useEffect(() => {
@@ -156,6 +170,16 @@ export default function QuestionEditor({
           placeholder="Enter your question..."
           rows={4}
         ></textarea>
+        {/* <ReactQuill
+          id="questionText"
+          value={newQuestion?.questionText}
+          onChange={(value) =>
+            setNewQuestion({ ...newQuestion, questionText: value })
+          }
+          placeholder="Enter your question..."
+          theme="snow" // Default theme
+          modules={modules}
+        /> */}
       </div>
 
       {/* answers */}
