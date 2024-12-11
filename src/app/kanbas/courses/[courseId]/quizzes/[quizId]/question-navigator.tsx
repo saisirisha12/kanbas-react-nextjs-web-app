@@ -343,7 +343,7 @@ export default function QuestionNavigator({
           ...quizAttempt,
           date: submissionDate, // Send as a Date object
         });
-        await client.calcQuizScore(currentUser._id as string, quizId as string);
+        await client.calcUserQuizScore(currentUser._id as string, quizId as string);
       }
       push(`/kanbas/courses/${courseId}/quizzes/`);
     } catch (error) {

@@ -5,7 +5,7 @@ import { formatDateTime } from "@/app/kanbas/account/users/users";
 import { useParams, useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { GoPencil } from "react-icons/go";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import AccessCodeDialog from "./accees-code-dialog";
 import QuestionNavigator from "./question-navigator";
 import * as client from "../../../client";
@@ -17,16 +17,40 @@ export default function QuizDetails() {
   const { quizzes } = useSelector((state: any) => state.quizzesReducer);
   const quiz = quizzes.find((quiz: any) => quiz._id === quizId);
   const [latestAttempt, setLatestAttempt] = useState(true);
+  const [latestScore, setScore] = useState(0);
+  const [quizPoints, setquizPoints] = useState(0);
+  const [getQuizAttempts, setQuizAttempts] = useState(0); 
+  const allowedAttempts = quiz.attempts;
 
   const fetchLatestAttempt = async () => {
     const latestAttemptList = await client.getLatestQuizAttempt(currentUser._id as string, quizId as string);
     if(latestAttemptList == null){
       setLatestAttempt(false);
     }
+    else{
+      setScore(latestAttemptList.score);
+    }
+  };
+
+  const calcQuizPoints = async () => {
+    const points = await client.calcQuizPoints(quizId as string);
+    setquizPoints(points);
+  };
+
+
+  const allowedAttemptsCalc = async () => {
+    try {
+      const val = await client.getQuizAttempts(currentUser._id as string, quizId as string);
+      setQuizAttempts(val);
+    } catch (error) {
+      console.error("Error fetching quiz attempts:", error);
+    }
   };
 
   useEffect(() => {
     fetchLatestAttempt();
+    calcQuizPoints();
+    allowedAttemptsCalc();
   });
 
   return (
@@ -81,7 +105,7 @@ export default function QuizDetails() {
         </div>
         <div className="col-md-7">
           <label htmlFor="wd-points-val" className="form-label">
-            {quiz.points}
+            {quizPoints}
           </label>
         </div>
       </div>
@@ -288,7 +312,7 @@ export default function QuizDetails() {
       <hr />
       {currentUser?.role === "STUDENT" && 
       <div className="row">
-        { quiz.showCorrectAnswers != "After Published" &&
+        { quiz.showCorrectAnswers != "After Published" && getQuizAttempts < allowedAttempts &&
         <div className="col-md-6 d-flex justify-content-end">
         <button className="btn btn-danger"
         id="wd-start-quiz-btn"
@@ -303,6 +327,9 @@ export default function QuizDetails() {
       {latestAttempt &&
         <div className="row mt-3">
           <h3 className="mt-3">Your Latest Attempt:</h3>
+          <div className="row">
+          <label className="mb-2 mt-1"><b>Your Score: {latestScore}</b></label>
+          </div>
           {/* <QuestionNavigator latestAttempt={true} showCorrectAnswers={quiz.showCorrectAnswers === "After Publish"} /> */}
           <QuestionNavigator latestAttempt={latestAttempt} showCorrectAnswers={quiz.showCorrectAnswers === "After Published"} />
         </div>

@@ -137,14 +137,28 @@ export const addAnswerToQuiz = async (quizId: string, answer: QuizAttempt) => {
  
 export const getLatestQuizAttempt = async(userId:string,quizId:string) => {
   const { data } = await axios.get(
-    `${QUIZZES_API}/${quizId}/users/${userId}/allowedAttempts`,
+    `${QUIZZES_API}/${quizId}/users/${userId}/LatestAttempt`,
   );
   return data;
 }
 
-export const calcQuizScore = async(userId:string,quizId:string) => {
+export const calcUserQuizScore = async(userId:string,quizId:string) => {
   const { data } = await axios.get(
     `${QUIZZES_API}/${quizId}/users/${userId}/calcScore`,
+  );
+  return data;
+}
+
+export const calcQuizPoints = async(quizId:string) => {
+  const { data } = await axios.get(
+    `${QUIZZES_API}/${quizId}/calcQuizPoints`,
+  );
+  return data;
+}
+
+export const getQuizAttempts = async(userId:string,quizId:string) => {
+  const { data } = await axios.get(
+    `${QUIZZES_API}/${quizId}/users/${userId}/allowedNumberOfAttempts`,
   );
   return data;
 }
