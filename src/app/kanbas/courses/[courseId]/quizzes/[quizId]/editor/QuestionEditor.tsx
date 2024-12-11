@@ -1,21 +1,24 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Question } from "@/app/kanbas/types";
 import { useParams } from "next/navigation";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaTrash } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import * as client from "../../../../client";
-import { addQuestion } from "@/app/kanbas/store/reducers/questionsReducer";
+import { addQuestion, updateQuestion } from "@/app/kanbas/store/reducers/questionsReducer";
+// import ReactQuill from "react-quill";
+// import "react-quill/dist/quill.snow.css";
 
 export default function QuestionEditor({
   questionId,
 }: {
-  questionId?: string;
+  questionId?: string | null;
 }) {
   const { quizId } = useParams();
   const { questions } = useSelector((state: any) => state.questionsReducer);
   const dispatch = useDispatch();
   const question: Question = questions.find((q: any) => q._id === questionId);
+
   const [newQuestion, setNewQuestion] = useState<Question>(
     question || {
       title: "",
@@ -41,12 +44,19 @@ export default function QuestionEditor({
 
   // saving
   const handleSave = async () => {
-    console.log(newQuestion);
-    const response = await client.addQuestionToQuiz(
-      quizId as string,
-      newQuestion
-    );
-    dispatch(addQuestion(response));
+    if(questionId){
+      const response = await client.updateQuestion(
+        newQuestion
+      );
+      dispatch(updateQuestion(response));
+    }
+    else{
+      const response = await client.addQuestionToQuiz(
+        quizId as string,
+        newQuestion
+      );
+      dispatch(addQuestion(response));
+    }
   };
 
   // cancel
@@ -61,6 +71,27 @@ export default function QuestionEditor({
       points: 0,
     });
   };
+
+  const toolbarOptions = [
+    [{ header: [1, 2, 3, false] }], 
+    ["bold", "italic", "underline"], 
+    [{ list: "ordered" }, { list: "bullet" }], 
+    [{ align: [] }], 
+    ["image", "link"], 
+    ["clean"], 
+  ];
+  const modules = {
+    toolbar: toolbarOptions,
+  };
+
+  useEffect(() => {
+    if(questionId){
+      setNewQuestion(question);
+    }
+    else{
+      setNewQuestion(newQuestion);
+    }
+  }, [question]);
 
   return (
     <div className="container">
@@ -139,6 +170,16 @@ export default function QuestionEditor({
           placeholder="Enter your question..."
           rows={4}
         ></textarea>
+        {/* <ReactQuill
+          id="questionText"
+          value={newQuestion?.questionText}
+          onChange={(value) =>
+            setNewQuestion({ ...newQuestion, questionText: value })
+          }
+          placeholder="Enter your question..."
+          theme="snow" // Default theme
+          modules={modules}
+        /> */}
       </div>
 
       {/* answers */}
@@ -335,7 +376,7 @@ export default function QuestionEditor({
         >
           Cancel
         </button>
-        <button type="button" className="btn btn-danger" onClick={handleSave}>
+        <button type="button" className="btn btn-danger" data-bs-dismiss="modal" onClick={handleSave}>
           Save Question
         </button>
       </div>

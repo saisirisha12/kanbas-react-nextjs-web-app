@@ -73,7 +73,8 @@ export interface Quiz {
 }
 
 export interface Question {
-  _id?: number;
+  // _id?: number;
+  _id?: string;
   title: string;
   questionText: string;
   quiz: string;
@@ -102,4 +103,5 @@ export interface QuizAttempt {
   attemptNumber: number;
   answers: Answer[];
   score: number;
+  date: Date | null
 }

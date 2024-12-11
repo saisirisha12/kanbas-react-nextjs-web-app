@@ -1,8 +1,9 @@
 import React from "react";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import GreenCheckmark from "../modules/green-checkmark";
 import RemoveQuizDialog from "./remove-quiz-dialog";
+import { IoCheckmarkCircleOutline } from "react-icons/io5";
 
 interface QuizControlButtonsProps {
   quizId: string;
@@ -16,15 +17,21 @@ export default function QuizControlButtons({
   setPublished,
 }: QuizControlButtonsProps) {
   const router = useRouter();
+  const { courseId } = useParams();
 
   // Navigate to Quiz Details screen for editing
   const handleEdit = () => {
-    router.push(`/kanbas/quizzes/${quizId}`);
+    router.push(`/kanbas/courses/${courseId}/quizzes/${quizId}`);
   };
 
   return (
     <div>
-      <GreenCheckmark />
+      {!published &&
+        <GreenCheckmark />
+      }
+      { published &&
+        <IoCheckmarkCircleOutline />
+      }
       <button
         className="btn btn-light btn-sm"
         type="button"

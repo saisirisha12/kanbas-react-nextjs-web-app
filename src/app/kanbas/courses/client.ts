@@ -1,11 +1,12 @@
 import axios from "axios";
-import { Assignment, Module, Question, Quiz } from "../types";
+import { Assignment, Module, Question, Quiz, QuizAttempt } from "../types";
 
 const REMOTE_SERVER = process.env.NEXT_PUBLIC_REMOTE_SERVER;
 const COURSES_API = `${REMOTE_SERVER}/api/courses`;
 const MODULES_API = `${REMOTE_SERVER}/api/modules`;
 const ASSIGNMENTS_API = `${REMOTE_SERVER}/api/assignments`;
 const QUIZZES_API = `${REMOTE_SERVER}/api/quizzes`;
+const QUESTIONS_API = `${REMOTE_SERVER}/api/questions`;
 
 export const findUsersForCourse = async (courseId: string) => {
   const { data } = await axios.get(`${COURSES_API}/${courseId}/users`);
@@ -110,3 +111,55 @@ export const addQuestionToQuiz = async (quizId: string, question: Question) => {
   );
   return data;
 };
+
+export const findQuestionsForQuiz = async (quizId: string) => {
+  const { data } = await axios.get(`${QUIZZES_API}/${quizId}/questions`);
+  return data;
+};
+
+export const deleteQuestion = async (questionId: string) => {
+  const { data } = await axios.delete(`${QUESTIONS_API}/${questionId}`);
+  return data;
+};
+
+export const updateQuestion = async (question: Question) => {
+  const { data } = await axios.put(`${QUESTIONS_API}/${question._id}`, question);
+  return data;
+};
+
+export const addAnswerToQuiz = async (quizId: string, answer: QuizAttempt) => {
+  const { data } = await axios.post(
+    `${QUIZZES_API}/${quizId}/answers`,
+    answer
+  );
+  return data;
+};
+ 
+export const getLatestQuizAttempt = async(userId:string,quizId:string) => {
+  const { data } = await axios.get(
+    `${QUIZZES_API}/${quizId}/users/${userId}/LatestAttempt`,
+  );
+  return data;
+}
+
+export const calcUserQuizScore = async(userId:string,quizId:string) => {
+  const { data } = await axios.get(
+    `${QUIZZES_API}/${quizId}/users/${userId}/calcScore`,
+  );
+  return data;
+}
+
+export const calcQuizPoints = async(quizId:string) => {
+  const { data } = await axios.get(
+    `${QUIZZES_API}/${quizId}/calcQuizPoints`,
+  );
+  return data;
+}
+
+export const getQuizAttempts = async(userId:string,quizId:string) => {
+  const { data } = await axios.get(
+    `${QUIZZES_API}/${quizId}/users/${userId}/allowedNumberOfAttempts`,
+  );
+  return data;
+}
+

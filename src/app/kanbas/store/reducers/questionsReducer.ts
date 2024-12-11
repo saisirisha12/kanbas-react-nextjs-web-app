@@ -24,7 +24,7 @@ const questionsSlice = createSlice({
     updateQuestion(state, action) {
       const updatedQuestion = action.payload;
       state.questions = state.questions.map((question) =>
-        question._id === updatedQuestion._id ? updatedQuestion : question
+        question._id === updatedQuestion?._id ? updatedQuestion : question
       );
     },
   },
