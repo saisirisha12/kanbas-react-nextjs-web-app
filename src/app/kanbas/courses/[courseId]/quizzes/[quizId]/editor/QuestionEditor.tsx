@@ -5,7 +5,10 @@ import React, { useEffect, useState } from "react";
 import { FaTrash } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import * as client from "../../../../client";
-import { addQuestion, updateQuestion } from "@/app/kanbas/store/reducers/questionsReducer";
+import {
+  addQuestion,
+  updateQuestion,
+} from "@/app/kanbas/store/reducers/questionsReducer";
 // import ReactQuill from "react-quill";
 // import "react-quill/dist/quill.snow.css";
 
@@ -44,19 +47,25 @@ export default function QuestionEditor({
 
   // saving
   const handleSave = async () => {
-    if(questionId){
-      const response = await client.updateQuestion(
-        newQuestion
-      );
+    if (questionId) {
+      const response = await client.updateQuestion(newQuestion);
       dispatch(updateQuestion(response));
-    }
-    else{
+    } else {
       const response = await client.addQuestionToQuiz(
         quizId as string,
         newQuestion
       );
       dispatch(addQuestion(response));
     }
+    setNewQuestion({
+      title: "",
+      questionText: "",
+      quiz: quizId as string,
+      type: "Multiple Choice",
+      options: [{ id: 0, text: "" }],
+      correctAnswers: [],
+      points: 0,
+    });
   };
 
   // cancel
@@ -72,26 +81,25 @@ export default function QuestionEditor({
     });
   };
 
-  const toolbarOptions = [
-    [{ header: [1, 2, 3, false] }], 
-    ["bold", "italic", "underline"], 
-    [{ list: "ordered" }, { list: "bullet" }], 
-    [{ align: [] }], 
-    ["image", "link"], 
-    ["clean"], 
-  ];
-  const modules = {
-    toolbar: toolbarOptions,
-  };
+  // const toolbarOptions = [
+  //   [{ header: [1, 2, 3, false] }],
+  //   ["bold", "italic", "underline"],
+  //   [{ list: "ordered" }, { list: "bullet" }],
+  //   [{ align: [] }],
+  //   ["image", "link"],
+  //   ["clean"],
+  // ];
+  // const modules = {
+  //   toolbar: toolbarOptions,
+  // };
 
   useEffect(() => {
-    if(questionId){
+    if (questionId) {
       setNewQuestion(question);
-    }
-    else{
+    } else {
       setNewQuestion(newQuestion);
     }
-  }, [question]);
+  }, [newQuestion, question, questionId]);
 
   return (
     <div className="container">
@@ -376,7 +384,12 @@ export default function QuestionEditor({
         >
           Cancel
         </button>
-        <button type="button" className="btn btn-danger" data-bs-dismiss="modal" onClick={handleSave}>
+        <button
+          type="button"
+          className="btn btn-danger"
+          data-bs-dismiss="modal"
+          onClick={handleSave}
+        >
           Save Question
         </button>
       </div>
