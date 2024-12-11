@@ -5,7 +5,9 @@ export default function Home() {
   return (
     <div>
       <h1>Sai Vihar Reddy Gunamgari</h1>
-      <h2>Fall 2024 Web Dev SEC 01</h2>
+      <h1>Sai Sirisha Volety</h1>
+      <h1>Aditya Sairam Govindan</h1>
+      <h2>Fall 2024 Web Dev SEC 01 & 02</h2>
       <ul>
         <li>
           <Link href="/labs">Labs</Link>
@@ -25,7 +27,7 @@ export default function Home() {
         <li>
           <Link
             id="wd-github-ui"
-            href="https://github.com/ViharReddy/kanbas-react-nextjs-web-app"
+            href="https://github.com/saisirisha12/kanbas-react-nextjs-web-app"
           >
             GitHub (Client)
           </Link>
@@ -33,7 +35,7 @@ export default function Home() {
         <li>
           <Link
             id="wd-github-api"
-            href="https://github.com/ViharReddy/kanbas-node-server-app"
+            href="https://github.com/saisirisha12/kanbas-node-server-app-final-project"
           >
             GitHub (Server)
           </Link>
@@ -41,7 +43,7 @@ export default function Home() {
         <li>
           <Link
             id="wd-server-url"
-            href="https://kanbas-node-server-app-dmgk.onrender.com"
+            href="https://kanbas-node-server-app-final-project.onrender.com"
           >
             Server (Deployed on Render.com)
           </Link>
