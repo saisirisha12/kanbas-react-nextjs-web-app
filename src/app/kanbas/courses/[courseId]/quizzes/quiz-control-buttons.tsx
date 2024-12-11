@@ -26,12 +26,8 @@ export default function QuizControlButtons({
 
   return (
     <div>
-      {!published &&
-        <GreenCheckmark />
-      }
-      { published &&
-        <IoCheckmarkCircleOutline />
-      }
+      {published && <GreenCheckmark />}
+      {!published && <IoCheckmarkCircleOutline />}
       <button
         className="btn btn-light btn-sm"
         type="button"

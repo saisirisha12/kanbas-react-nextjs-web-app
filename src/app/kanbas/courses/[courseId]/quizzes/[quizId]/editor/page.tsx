@@ -62,24 +62,18 @@ export default function QuizEditor() {
     push(`/kanbas/courses/${courseId}/quizzes`);
   };
 
-  const setPublished = async (quizId: string, published: boolean) => {
-    const quiz = quizzes.find((quiz: any) => quiz._id === quizId);
-    const response = await client.updateQuiz({ ...quiz, published });
-    dispatch(updateQuiz(response));
-  };
-
   const saveAndPublishChanges = async () => {
     if (quizId === "new") {
+      newQuiz.published = true;
       const response = await client.createQuizForCourse(
         courseId as string,
         newQuiz
       );
       dispatch(addQuiz(response));
-      setPublished(response._id, true);
     } else if (quiz) {
+      newQuiz.published = true;
       const response = await client.updateQuiz(newQuiz);
       dispatch(updateQuiz(response));
-      setPublished(response._id, true);
     }
     push(`/kanbas/courses/${courseId}/quizzes`);
   };
@@ -265,27 +259,26 @@ export default function QuizEditor() {
               </div>
 
               {newQuiz?.multipleAttempts && (
-                  <div className="mt-3">
-                    <label htmlFor="wd-number-of-attempts" className="form-label">
-                      Number of Attempts:
-                    </label>
-                    <input
-                      type="number"
-                      id="wd-number-of-attempts"
-                      className="form-control"
-                      value={newQuiz?.attempts || ""}
-                      onChange={(e) =>
-                        setNewQuiz({
-                          ...newQuiz,
-                          attempts: parseInt(e.target.value) || 1, // Ensure valid number
-                        })
-                      }
-                      min={1} // Minimum attempts allowed
-                      disabled={isDisabled}
-                    />
-                  </div>
-                )}
-
+                <div className="mt-3">
+                  <label htmlFor="wd-number-of-attempts" className="form-label">
+                    Number of Attempts:
+                  </label>
+                  <input
+                    type="number"
+                    id="wd-number-of-attempts"
+                    className="form-control"
+                    value={newQuiz?.attempts || ""}
+                    onChange={(e) =>
+                      setNewQuiz({
+                        ...newQuiz,
+                        attempts: parseInt(e.target.value) || 1, // Ensure valid number
+                      })
+                    }
+                    min={1} // Minimum attempts allowed
+                    disabled={isDisabled}
+                  />
+                </div>
+              )}
 
               <div className="row my-3">
                 <label
@@ -349,10 +342,7 @@ export default function QuizEditor() {
                   }
                   disabled={isDisabled}
                 />
-                <label
-                  className="form-check-label"
-                  htmlFor="wd-one-at-a-time"
-                >
+                <label className="form-check-label" htmlFor="wd-one-at-a-time">
                   One question at a time
                 </label>
               </div>
@@ -393,14 +383,10 @@ export default function QuizEditor() {
                   }
                   disabled={isDisabled}
                 />
-                <label
-                  className="form-check-label"
-                  htmlFor="wd-lock-questions"
-                >
+                <label className="form-check-label" htmlFor="wd-lock-questions">
                   Lock question after answering
                 </label>
               </div>
-
             </div>
 
             {/* Assign Section */}
@@ -521,19 +507,19 @@ export default function QuizEditor() {
               >
                 Save
               </button>
-              {!newQuiz.published  &&
-              <button
-                type="button"
-                className="btn btn-success"
-                onClick={(e) => {
-                  e.preventDefault();
-                  saveAndPublishChanges();
-                }}
-                disabled={isDisabled}
-              >
-                Save & Publish
-              </button>
-            }
+              {!newQuiz.published && (
+                <button
+                  type="button"
+                  className="btn btn-success"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    saveAndPublishChanges();
+                  }}
+                  disabled={isDisabled}
+                >
+                  Save & Publish
+                </button>
+              )}
             </div>
           </form>
         )}
@@ -547,7 +533,8 @@ export default function QuizEditor() {
                 id="wd-add-question-btn"
                 className="btn btn-outline-secondary px-4" /* Added padding for consistency */
                 data-bs-toggle="modal"
-                data-bs-target={`#wd-quiz-dialog`} >
+                data-bs-target={`#wd-quiz-dialog`}
+              >
                 + New Question
               </button>
             </div>
