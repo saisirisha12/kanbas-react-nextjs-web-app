@@ -123,10 +123,7 @@ export const deleteQuestion = async (questionId: string) => {
 };
 
 export const updateQuestion = async (question: Question) => {
-  console.log(question);
-  console.log(question._id);
   const { data } = await axios.put(`${QUESTIONS_API}/${question._id}`, question);
-  console.log(data);
   return data;
 };
 
@@ -138,9 +135,17 @@ export const addAnswerToQuiz = async (quizId: string, answer: QuizAttempt) => {
   return data;
 };
  
-export const getQuizAttempts = async(userId:string,quizId:string) => {
+export const getLatestQuizAttempt = async(userId:string,quizId:string) => {
   const { data } = await axios.get(
     `${QUIZZES_API}/${quizId}/users/${userId}/allowedAttempts`,
   );
   return data;
 }
+
+export const calcQuizScore = async(userId:string,quizId:string) => {
+  const { data } = await axios.get(
+    `${QUIZZES_API}/${quizId}/users/${userId}/calcScore`,
+  );
+  return data;
+}
+

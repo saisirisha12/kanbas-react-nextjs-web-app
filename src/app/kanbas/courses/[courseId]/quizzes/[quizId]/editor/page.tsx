@@ -62,6 +62,28 @@ export default function QuizEditor() {
     push(`/kanbas/courses/${courseId}/quizzes`);
   };
 
+  const setPublished = async (quizId: string, published: boolean) => {
+    const quiz = quizzes.find((quiz: any) => quiz._id === quizId);
+    const response = await client.updateQuiz({ ...quiz, published });
+    dispatch(updateQuiz(response));
+  };
+
+  const saveAndPublishChanges = async () => {
+    if (quizId === "new") {
+      const response = await client.createQuizForCourse(
+        courseId as string,
+        newQuiz
+      );
+      dispatch(addQuiz(response));
+      setPublished(response._id, true);
+    } else if (quiz) {
+      const response = await client.updateQuiz(newQuiz);
+      dispatch(updateQuiz(response));
+      setPublished(response._id, true);
+    }
+    push(`/kanbas/courses/${courseId}/quizzes`);
+  };
+
   return (
     <div id="wd-quizzes-editor" className="row ms-0">
       <div className="row">
@@ -219,6 +241,7 @@ export default function QuizEditor() {
                   Shuffle Answers
                 </label>
               </div>
+
               <div className="form-check my-3">
                 <input
                   className="form-check-input"
@@ -267,7 +290,7 @@ export default function QuizEditor() {
               <div className="row my-3">
                 <label
                   htmlFor="wd-time-limit"
-                  className="col-sm-4 col-form-label"
+                  className="col-sm-2 col-form-label"
                 >
                   Time Limit (Minutes)
                 </label>
@@ -287,6 +310,97 @@ export default function QuizEditor() {
                   />
                 </div>
               </div>
+
+              <div className="row my-3">
+                <label
+                  htmlFor="wd-show-correct-answers"
+                  className="col-sm-2 col-form-label"
+                >
+                  Show Correct Answers
+                </label>
+                <div className="col-sm-2">
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="wd-show-correct-answers"
+                    value={newQuiz?.showCorrectAnswers}
+                    onChange={(e) =>
+                      setNewQuiz({
+                        ...newQuiz,
+                        showCorrectAnswers: e.target.value,
+                      })
+                    }
+                    disabled={isDisabled}
+                  />
+                </div>
+              </div>
+
+              <div className="form-check my-3">
+                <input
+                  className="form-check-input"
+                  type="checkbox"
+                  id="wd-one-at-a-time"
+                  checked={newQuiz?.oneQuestionAtATime}
+                  onChange={(e) =>
+                    setNewQuiz({
+                      ...newQuiz,
+                      oneQuestionAtATime: e.target.checked,
+                    })
+                  }
+                  disabled={isDisabled}
+                />
+                <label
+                  className="form-check-label"
+                  htmlFor="wd-one-at-a-time"
+                >
+                  One question at a time
+                </label>
+              </div>
+
+              <div className="form-check my-3">
+                <input
+                  className="form-check-input"
+                  type="checkbox"
+                  id="wd-webcam-required"
+                  checked={newQuiz?.webCamRequired}
+                  onChange={(e) =>
+                    setNewQuiz({
+                      ...newQuiz,
+                      webCamRequired: e.target.checked,
+                    })
+                  }
+                  disabled={isDisabled}
+                />
+                <label
+                  className="form-check-label"
+                  htmlFor="wd-webcam-required"
+                >
+                  Web Cam Required
+                </label>
+              </div>
+
+              <div className="form-check my-3">
+                <input
+                  className="form-check-input"
+                  type="checkbox"
+                  id="wd-lock-questions"
+                  checked={newQuiz?.lockQuestionsAfterAnswering}
+                  onChange={(e) =>
+                    setNewQuiz({
+                      ...newQuiz,
+                      lockQuestionsAfterAnswering: e.target.checked,
+                    })
+                  }
+                  disabled={isDisabled}
+                />
+                <label
+                  className="form-check-label"
+                  htmlFor="wd-lock-questions"
+                >
+                  Lock question after answering
+                </label>
+              </div>
+
             </div>
 
             {/* Assign Section */}
@@ -398,7 +512,7 @@ export default function QuizEditor() {
               </Link>
               <button
                 type="button"
-                className="btn btn-danger"
+                className="btn btn-danger me-1"
                 onClick={(e) => {
                   e.preventDefault();
                   saveChanges();
@@ -407,6 +521,19 @@ export default function QuizEditor() {
               >
                 Save
               </button>
+              {!newQuiz.published  &&
+              <button
+                type="button"
+                className="btn btn-success"
+                onClick={(e) => {
+                  e.preventDefault();
+                  saveAndPublishChanges();
+                }}
+                disabled={isDisabled}
+              >
+                Save & Publish
+              </button>
+            }
             </div>
           </form>
         )}

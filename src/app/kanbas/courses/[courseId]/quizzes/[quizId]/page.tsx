@@ -3,9 +3,12 @@
 
 import { formatDateTime } from "@/app/kanbas/account/users/users";
 import { useParams, useRouter } from "next/navigation";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { GoPencil } from "react-icons/go";
 import { useSelector } from "react-redux";
+import AccessCodeDialog from "./accees-code-dialog";
+import QuestionNavigator from "./question-navigator";
+import * as client from "../../../client";
 
 export default function QuizDetails() {
   const { push } = useRouter();
@@ -13,6 +16,18 @@ export default function QuizDetails() {
   const { courseId, quizId } = useParams();
   const { quizzes } = useSelector((state: any) => state.quizzesReducer);
   const quiz = quizzes.find((quiz: any) => quiz._id === quizId);
+  const [latestAttempt, setLatestAttempt] = useState(true);
+
+  const fetchLatestAttempt = async () => {
+    const latestAttemptList = await client.getLatestQuizAttempt(currentUser._id as string, quizId as string);
+    if(latestAttemptList == null){
+      setLatestAttempt(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchLatestAttempt();
+  });
 
   return (
     <div className="quiz-details-container">
@@ -271,17 +286,29 @@ export default function QuizDetails() {
         </div>
       </div>
       <hr />
-      {currentUser?.role === "STUDENT" &&
+      {currentUser?.role === "STUDENT" && 
       <div className="row">
+        { quiz.showCorrectAnswers != "After Published" &&
         <div className="col-md-6 d-flex justify-content-end">
         <button className="btn btn-danger"
-        onClick={() =>
-          push(`/kanbas/courses/${courseId}/quizzes/${quizId}/preview`)
-        }>
+        id="wd-start-quiz-btn"
+        data-bs-toggle="modal"
+        data-bs-target={`#wd-start-quiz-dialog`}>
             Start Quiz
           </button>
+          <AccessCodeDialog />
+          <hr />
         </div>
-          
+      }
+      {latestAttempt &&
+        <div className="row mt-3">
+          <h3 className="mt-3">Your Latest Attempt:</h3>
+          {/* <QuestionNavigator latestAttempt={true} showCorrectAnswers={quiz.showCorrectAnswers === "After Publish"} /> */}
+          <QuestionNavigator latestAttempt={latestAttempt} showCorrectAnswers={quiz.showCorrectAnswers === "After Published"} />
+        </div>
+      }
+        <div>
+        </div>
       </div> 
       }
 
